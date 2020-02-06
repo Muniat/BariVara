@@ -41,7 +41,7 @@ def logout(request):
 
 def postsignup(request):  
     name=request.POST.get('name')
-    number=request.POST.get('number')  #extra field
+    number=request.POST.get('number')  
     email=request.POST.get('email')
     password=request.POST.get('pass')
     try:
@@ -53,6 +53,6 @@ def postsignup(request):
     uid = user['localId']
 
     data = {"name":name,"status":"1" , "Phone":number}
-    #Trying to add number in the database, but its not working...
+    
     database.child("users").child(uid).child("details").set(data)
     return render(request, "HomePage.html")
