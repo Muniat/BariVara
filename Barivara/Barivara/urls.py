@@ -22,7 +22,6 @@ urlpatterns = [
     path('', views.signIn),
     path('postsign', views.postsign),
     path('logout', views.logout, name="log"),
-    path('signup', views.signUp, name="signup"),
     path('postsignup', views.postsignup, name="postsignup"),
 ]
 

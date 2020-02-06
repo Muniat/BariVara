@@ -20,7 +20,7 @@ database=firebase.database()
 
 def signIn(request):
 
-    return render(request, "signIn.html")
+    return render(request, "LoginPage.html")
 
 def postsign(request):
     email = request.POST.get('email')
@@ -29,29 +29,30 @@ def postsign(request):
       user = authe.sign_in_with_email_and_password(email,password)
     except:
       message = "Invalid Email Id or Password !! Please try again."
-      return render(request, "signIn.html",{"message":message})
+      return render(request, "LoginPage.html",{"message":message})
     print(user['idToken'])
     session_id = user['idToken']
     request.session['uid'] = str(session_id)  
-    return render(request, "welcome.html")
+    return render(request, "HomePage.html")
 def logout(request):
     auth.logout(request)
-    return render(request, "signIn.html")
-def signUp(request):
-    return render(request, "signup.html")
+    return render(request, "LoginPage.html")
+
+
 def postsignup(request):  
     name=request.POST.get('name')
+    number=request.POST.get('number')  #extra field
     email=request.POST.get('email')
     password=request.POST.get('pass')
     try:
       user=authe.create_user_with_email_and_password(email,password)
     except:
       message="Invalid Username/Email/Password !! Please try again."
-      return render(request, "signup.html",{"message":message})
+      return render(request, "LoginPage.html",{"message":message})
 
     uid = user['localId']
 
-    data = {"name":name,"status":"1"}
-
+    data = {"name":name,"status":"1" , "Phone_Number:":number}
+    #Trying to add number in the database, but its not working...
     database.child("users").child(uid).child("details").set(data)
-    return render(request, "signIn.html")
+    return render(request, "HomePage.html")
