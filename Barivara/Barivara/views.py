@@ -16,6 +16,7 @@ config = {
 firebase = pyrebase.initialize_app(config)
 
 authe = firebase.auth()
+database=firebase.database()
 
 def signIn(request):
 
@@ -23,16 +24,34 @@ def signIn(request):
 
 def postsign(request):
     email = request.POST.get('email')
-    passw = request.POST.get('pass')
+    password = request.POST.get('pass')
     try:
-      user = authe.sign_in_with_email_and_password(email,passw)
+      user = authe.sign_in_with_email_and_password(email,password)
     except:
       message = "Invalid Email Id or Password !! Please try again."
-      return render(request, "signIn.html",{"messg":message})
+      return render(request, "signIn.html",{"message":message})
     print(user['idToken'])
     session_id = user['idToken']
     request.session['uid'] = str(session_id)  
-    return render(request, "welcome.html",{"e":email})
+    return render(request, "welcome.html")
 def logout(request):
     auth.logout(request)
+    return render(request, "signIn.html")
+def signUp(request):
+    return render(request, "signup.html")
+def postsignup(request):  
+    name=request.POST.get('name')
+    email=request.POST.get('email')
+    password=request.POST.get('pass')
+    try:
+      user=authe.create_user_with_email_and_password(email,password)
+    except:
+      message="Invalid Username/Email/Password !! Please try again."
+      return render(request, "signup.html",{"message":message})
+
+    uid = user['localId']
+
+    data = {"name":name,"status":"1"}
+
+    database.child("users").child(uid).child("details").set(data)
     return render(request, "signIn.html")
