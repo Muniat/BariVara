@@ -28,7 +28,7 @@ def postsign(request):
     try:
       user = authe.sign_in_with_email_and_password(email,password)
     except:
-      message = "Invalid Email Id or Password !! Please try again."
+      message = "Invalid Email Id or Password! Please try again."
       return render(request, "LoginPage.html",{"message":message})
     print(user['idToken'])
     session_id = user['idToken']
@@ -47,12 +47,12 @@ def postsignup(request):
     try:
       user=authe.create_user_with_email_and_password(email,password)
     except:
-      message="Invalid Username/Email/Password !! Please try again."
+      message="Invalid Username/Email/Password! Please try again."
       return render(request, "LoginPage.html",{"message":message})
 
     uid = user['localId']
 
-    data = {"name":name,"status":"1" , "Phone_Number:":number}
+    data = {"name":name,"status":"1" , "Phone":number}
     #Trying to add number in the database, but its not working...
     database.child("users").child(uid).child("details").set(data)
     return render(request, "HomePage.html")
