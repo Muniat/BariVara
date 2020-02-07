@@ -37,7 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social_django',
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+
+    )
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -47,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'Barivara.urls'
@@ -62,6 +70,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -79,6 +89,12 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '367143359838-4g3iq4vdkmvch2h9oc84mp0sa067csak.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'GK2cWsPj2o02rWvR7dkywv_1'
+
+SOCIAL_AUTH__KEY = '367143359838-4g3iq4vdkmvch2h9oc84mp0sa067csak.apps.googleusercontent.com'
+SOCIAL_AUTH__SECRET = 'GK2cWsPj2o02rWvR7dkywv_1'
 
 
 # Password validation
@@ -105,7 +121,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Dhaka'
 
 USE_I18N = True
 
@@ -121,3 +137,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS =(
     os.path.join(BASE_DIR,'static'),
 )
+SITE_ID = 1
+LOGIN_REDIRECT_URL = 'welcome'

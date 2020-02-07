@@ -154,6 +154,7 @@
                 <input type="email" placeholder="Email" name="email">
                 <input type="password" placeholder="Password" name="pass">
                 <input type="submit" value="Log In">
+                <button type="button" onclick="location.href='{% url 'social:begin' 'google-oauth2' %}'" class="google btn"><i class="fa fa-google fa-fw"></i><a>LOGIN WITH GOOGLE</a>
             </form>
         </nav>
         <div class="wrapper">

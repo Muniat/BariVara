@@ -38,6 +38,9 @@ def logout(request):
     auth.logout(request)
     return render(request, "LoginPage.html")
 
+def postgooglelogin(request):
+    return render(request, "HomePage.html")
+
 
 def postsignup(request):  
     name=request.POST.get('name')
