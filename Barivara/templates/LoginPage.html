@@ -64,37 +64,49 @@
         }
         nav form input[type="submit"]:hover{
             background: #566573 ;
+        }
+        
+        nav form button[type="button"]{
+            border: 1px solid black;
+            background: #2C3E50;
+            color: white;
+            width: 150px;
+            height: 30px;
+        }
+        nav form button[type="button"]:hover{
+            background: #566573 ;
         } /* Css for NavBar Ends here*/     
 
 
 
 
  .wrapper{
-    width: 600px;
-    height: 600px;
+    width: 500px;
+    height: 500px;
     color:white;
     background-color:   #0b5345  ;
-    top: 55%;
-    left: 70%;
+    top: 60%;
+    left: 50%;
     padding: 60px 30px;
     position: absolute;
     transform: translate(-50% , -50%);
     box-sizing: border-box;
     box-shadow: 10px 10px 50px #000 ;
+    
 }
 
 .wrapper p {
     
     margin-top: 10px;
     margin-bottom: 10px;
-    margin-left: 180px;
+    margin-left: 120px;
 }
 .wrapper h1{
     margin: 0;
     padding: 0;
     padding-bottom: 5px;
     font-weight: bold;
-    font-size: 40px;
+    font-size: 30px;
     color: #fff;
     text-align: center;
 
@@ -103,9 +115,9 @@
 .wrapper form input{
     color: black;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 15px;
     width: 100%;
-    height: 40px;
+    height: 30px;
     margin-bottom: 20px;
     background: white;
     
@@ -114,9 +126,9 @@
 
 .wrapper form input[type="submit"]{
     background-color:#566573  ;
-    margin-left: 230px;
+    margin-left: 170px;
     width: 100px;
-    font-size: 22px;
+    font-size: 15px;
     border: none;
     border: 1px solid black;
     
@@ -154,12 +166,12 @@
                 <input type="email" placeholder="Email" name="email">
                 <input type="password" placeholder="Password" name="pass">
                 <input type="submit" value="Log In">
-                <button type="button" onclick="location.href='{% url 'social:begin' 'google-oauth2' %}'" class="google btn"><i class="fa fa-google fa-fw"></i><a>LOGIN WITH GOOGLE</a>
+                <button type="button" onclick="location.href='{% url 'social:begin' 'google-oauth2' %}'" class="google btn"><i class="fa fa-google fa-fw"></i><a>Log In with Google</a>
             </form>
         </nav>
         <div class="wrapper">
             
-            <img src="/static/followers.png" alt="Logo" width="100px" height="100px" style="margin-left: 230px; margin-bottom: 10px;">
+            <img src="/static/followers.png" alt="Logo" width="100px" height="100px" style="margin-left: 180px; margin-bottom: 10px;">
             <h1>Create An Account</h1>
             <p>Quicker, Easier and Faster</p>
             <form action="postsignup" method="post">
