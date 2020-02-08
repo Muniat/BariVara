@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<title></title>
+<body>
+<form action="create" method="post">
+    {% csrf_token %}
+    <h2>Create Advertisement for your house </h2>
+    House Owner:
+    <input type="text" name="name" required><br><br>
+    Contact Number:
+    <input type="number" name="number" required><br><br>
+    Address:
+    <input type="text" name="address" required><br><br>
+    Flat/Apartment Size (In square feet):
+    <input type="number" name="size" required><br><br>
+    Rent fee per month (In Taka):
+    <input type="number" name="fee" required><br><br>
+    House Details:
+    <input type="text" name="house_details" required><br><br>
+
+    <input type="submit" value="Create Advertisement">
+</form>
+
+
+</body>
+</html>

@@ -52,10 +52,42 @@ def postsignup(request):
     except:
       message="Invalid Username/Email/Password! Please try again."
       return render(request, "LoginPage.html",{"message":message})
-
+      
     uid = user['localId']
 
-    data = {"name":name,"status":"1" , "Phone":number}
+    data = {"name":name,"status":"1", "Phone":number}
     
     database.child("users").child(uid).child("details").set(data)
     return render(request, "HomePage.html")
+
+def create_advertisement(request):
+
+    return render(request, "create_advertisement.html")
+
+def create(request):
+
+    import time
+    from datetime import datetime, timezone
+    import pytz
+    tz = pytz.timezone('Asia/Dhaka')
+    time_now = datetime.now(timezone.utc).astimezone(tz)
+    millis = int(time.mktime(time_now.timetuple()))
+    print("mili"+str(millis))
+    name=request.POST.get('name')
+    number=request.POST.get('number')  
+    address=request.POST.get('address')
+    size=request.POST.get('size')
+    fee=request.POST.get('fee')
+    house_details=request.POST.get('house_details')
+
+    idtoken = request.session['uid']
+    a = authe.get_account_info(idtoken)
+    a = a['users']
+    a = a[0]
+    a = a['localId']
+    print("info"+str(a))
+
+
+    data={"owner":name,"contact":number,"address":address,"size":size,"fee":fee,"house_details":house_details}
+    database.child('users').child(a).child('advertisements').child(millis).set(data)
+    return render(request, "HomePage.html")        

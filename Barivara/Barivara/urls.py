@@ -25,5 +25,7 @@ urlpatterns = [
     path('api/v1/',include('social_django.urls', namespace='social')),
     path('logout', views.logout, name="log"),
     path('postsignup', views.postsignup, name="postsignup"),
+    path('create_advertisement', views.create_advertisement, name="create_advertisement"),
+    path('create', views.create, name="create"),
 ]
 
