@@ -21,21 +21,21 @@
         }
         #main{
             width: 100%;
-            height: 100vh;
+            height:100vh;
             background:linear-gradient(rgba(0,0,0,.3),rgba(0,0,0,.3)),url('/static/City0.jpg') no-repeat;
         }
         nav{
             width: 100%;
-            height: 100px;
+            height:14%;
             background-color:  #0b5345    ;
             line-height: 80px;
         }
         nav img{
-            margin-left: 200px;
+            margin-left: 15%;
         }
         nav form {
             float:right;
-            margin-right: 120px;
+            margin-right: 13%;
         }
         nav form input{
             height: 30px;
@@ -60,27 +60,44 @@
             border: 1px solid black;
             background: #2C3E50;
             color: white;
-            width: 80px;
+            width: 10%;
         }
         nav form input[type="submit"]:hover{
-            background: #566573 ;
+            background: #239B56  ;
         }
         
         nav form button[type="button"]{
             border: 1px solid black;
             background: #2C3E50;
             color: white;
-            width: 150px;
-            height: 30px;
+            width: 21%;
+            height: 5%;
+            padding: 2%;
+            background-color: #5DADE2;
+        }
+        nav form button img{
+            float: left;
         }
         nav form button[type="button"]:hover{
-            background: #566573 ;
+            background: #AED6F1  ;
         } /* Css for NavBar Ends here*/     
 
 
 
 
  .wrapper{
+
+    width: 45%;
+    height: 55%;
+    background-color: #2C3E50;
+    top: 30%;
+    left: 28%;
+    box-sizing: border-box;
+    position: absolute;
+    text-align: center;
+    background-color:   #0b5345  ;
+    box-shadow: 10px 10px 50px #000
+    /*
     width: 500px;
     height: 500px;
     color:white;
@@ -91,20 +108,18 @@
     position: absolute;
     transform: translate(-50% , -50%);
     box-sizing: border-box;
-    box-shadow: 10px 10px 50px #000 ;
+    box-shadow: 10px 10px 50px #000 ;*/
     
 }
 
 .wrapper p {
     
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-left: 120px;
+    margin: 1%;
 }
 .wrapper h1{
     margin: 0;
     padding: 0;
-    padding-bottom: 5px;
+    padding-bottom: 1%;
     font-weight: bold;
     font-size: 30px;
     color: #fff;
@@ -116,26 +131,24 @@
     color: black;
     font-weight: bold;
     font-size: 15px;
-    width: 100%;
-    height: 30px;
-    margin-bottom: 20px;
+    width: 50%;
+    height: 3vh;
+    margin-bottom: 2%;
     background: white;
-    
-    
+    float: center;
 }
 
 .wrapper form input[type="submit"]{
     background-color:#566573  ;
-    margin-left: 170px;
-    width: 100px;
-    font-size: 15px;
+    width: 20%;
+    font-size: 2vh;
     border: none;
     border: 1px solid black;
-    
+    height: 5vh;
 }
 
 .wrapper form input[type="submit"]:hover{
-    background-color:#808B96   ;
+    background-color:#239B56     ;
 }
 .wrapper form input[type="text"], input[type="password"], input[type="email"]{
     border: none;
@@ -144,13 +157,32 @@
     background: white;
 }
 .wrapper form input[type="text"]:hover{
-    background-color:#808B96   ;
+    background-color:#ABEBC6    ;
 }
 .wrapper form input[type="password"]:hover{
-    background-color:#808B96   ;
+    background-color:#ABEBC6   ;
 }
 .wrapper form input[type="email"]:hover{
-    background-color:#808B96   ;
+    background-color:#ABEBC6    ;
+}
+
+.wrapper form button{
+    width: 20%;
+    height: 5vh;
+    background-color: #5DADE2 ;
+    border: 1px solid black;
+}
+
+.wrapper form button:hover{
+    background-color: #AED6F1  ;
+}
+.wrapper form button img{
+    float: left;
+    margin-left: 1.5%;
+}
+.wrapper form button a{
+    font-size: 1.6vh;
+    
 }
 
 
@@ -160,18 +192,18 @@
     <div id="main">
         
         <nav>
-        <img src="/static/Logo.png" alt="Logo" width="200px" height="100px"  >
+        <img src="/static/Logo.png" alt="Logo" width="15%" height="100%"  >
             <form action="postsign" method="post">
                 {% csrf_token %}
                 <input type="email" placeholder="Email" name="email">
                 <input type="password" placeholder="Password" name="pass">
                 <input type="submit" value="Log In">
-                <button type="button" onclick="location.href='{% url 'social:begin' 'google-oauth2' %}'" class="google btn"><i class="fa fa-google fa-fw"></i><a>Log In with Google</a>
+                <button type="button" onclick="location.href='{% url 'social:begin' 'google-oauth2' %}'" class="google btn"><img src="/static/google.png"><a>Log In with Google</a>
             </form>
         </nav>
         <div class="wrapper">
             
-            <img src="/static/followers.png" alt="Logo" width="100px" height="100px" style="margin-left: 180px; margin-bottom: 10px;">
+            <img src="/static/followers.png" alt="Logo" width="13%" height="20%" style="margin-left: 7%; margin-bottom:2%;">
             <h1>Create An Account</h1>
             <p>Quicker, Easier and Faster</p>
             <form action="postsignup" method="post">
@@ -179,10 +211,9 @@
                 <input type="text" placeholder="Name" name="name">
                 <input type="text" placeholder="Phone Number" name="number">
                 <input type="email" placeholder="Email" name="email">
-                <input type="password" placeholder="Password" name="pass">
-                
-                
+                <input type="password" placeholder="Password" name="pass"><br>          
                 <input type="submit" value="Sign Up">
+                <button type="button" onclick="location.href='{% url 'social:begin' 'google-oauth2' %}'" class="google btn"><img src="/static/google.png"><a>Log In with Google</a>
             </form>
         </div>
 

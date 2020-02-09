@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+{% extends "HomePage.html"%}
+<!--<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -23,7 +24,50 @@
 
     <input type="submit" value="Create Advertisement">
 </form>
-
-
 </body>
 </html>
+-->
+{% block content %}
+<style>
+    .wrapper2 form{
+    width: 55%;
+    height: 55%;
+    background-color: #2C3E50;
+    top: 30%;
+    left: 24%;
+    box-sizing: border-box;
+    position: absolute;
+    text-align: center;
+    }
+    .wrapper2 form h2{
+        padding:2%;
+    }
+    .wrapper2 form input[type="text"],input[type="number"]{
+        padding: 1%;
+    }
+
+
+
+</style>
+<div class="wrapper2">
+<form action="create" method="post">
+    {% csrf_token %}
+    <h2>Create Advertisement for your house </h2>
+    House Owner:
+    <input type="text" name="name" required><br><br>
+    Contact Number:
+    <input type="number" name="number" required><br><br>
+    Address:
+    <input type="text" name="address" required><br><br>
+    Flat/Apartment Size (In square feet):
+    <input type="number" name="size" required><br><br>
+    Rent fee per month (In Taka):
+    <input type="number" name="fee" required><br><br>
+    House Details:
+    <input type="text" name="house_details" required><br><br>
+
+    <input type="submit" value="Create Advertisement">
+</form>
+</div>
+                
+{% endblock content %}
