@@ -178,7 +178,7 @@
 }
 .wrapper form button img{
     float: left;
-    margin-left: 1.5%;
+    margin: 2.5%;
 }
 .wrapper form button a{
     font-size: 1.6vh;
@@ -192,7 +192,7 @@
     <div id="main">
         
         <nav>
-        <img src="/static/Logo.png" alt="Logo" width="15%" height="100%"  >
+        <img src="/static/Logo.png" alt="Logo" width="15%" height="100%" >
             <form action="postsign" method="post">
                 {% csrf_token %}
                 <input type="email" placeholder="Email" name="email">
@@ -203,7 +203,7 @@
         </nav>
         <div class="wrapper">
             
-            <img src="/static/followers.png" alt="Logo" width="13%" height="20%" style="margin-left: 7%; margin-bottom:2%;">
+            <img src="/static/followers.png" alt="Logo" width="13%" height="20%" style=" margin:3% ;">
             <h1>Create An Account</h1>
             <p>Quicker, Easier and Faster</p>
             <form action="postsignup" method="post">

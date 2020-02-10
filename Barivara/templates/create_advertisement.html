@@ -30,20 +30,26 @@
 {% block content %}
 <style>
     .wrapper2 form{
-    width: 55%;
+    width: 40%;
     height: 55%;
     background-color: #2C3E50;
     top: 30%;
-    left: 24%;
+    left: 30%;
     box-sizing: border-box;
     position: absolute;
     text-align: center;
     }
     .wrapper2 form h2{
         padding:2%;
+        margin: 2%;
     }
     .wrapper2 form input[type="text"],input[type="number"]{
         padding: 1%;
+        width: 40%;
+        height: 2vh;
+    }
+    .wrapper2 form input[type="text"]:hover,input[type="number"]:hover,input[type="Submit"]:hover{
+        background-color: #AEB6BF;
     }
 
 
@@ -53,18 +59,18 @@
 <form action="create" method="post">
     {% csrf_token %}
     <h2>Create Advertisement for your house </h2>
-    House Owner:
-    <input type="text" name="name" required><br><br>
-    Contact Number:
-    <input type="number" name="number" required><br><br>
-    Address:
-    <input type="text" name="address" required><br><br>
-    Flat/Apartment Size (In square feet):
-    <input type="number" name="size" required><br><br>
-    Rent fee per month (In Taka):
-    <input type="number" name="fee" required><br><br>
-    House Details:
-    <input type="text" name="house_details" required><br><br>
+    
+    <input type="text" placeholder=" House Owner"name="name" required><br><br>
+    
+    <input type="number" placeholder="Contact Number" name="number" required><br><br>
+    
+    <input type="text"placeholder="Address" name="address" required><br><br>
+    
+    <input type="number"placeholder="Flat/Apartment Size (In square feet)" name="size" required><br><br>
+    
+    <input type="number" placeholder="Rent fee per month (In Taka):" name="fee" required><br><br>
+    
+    <input type="text" placeholder="House Details" name="house_details" required><br><br>
 
     <input type="submit" value="Create Advertisement">
 </form>
