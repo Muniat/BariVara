@@ -101,10 +101,14 @@
                     <li> <a href='{% url 'log' %}'> Log Out </a></li>
                 </ul>
                 </nav>
-                {% block content %}
+                <br><br>
+                <h2>Welcome</h2><br><br>
+                {% for time,dat,advertisements in comb_lis %}
 
-                
-                {% endblock content %}
+                Date: {{dat}} &nbsp; Advertisement: {{advertisements}}
+                <br>
+
+                {% endfor %}
                 </div>
             </div>
         </div>

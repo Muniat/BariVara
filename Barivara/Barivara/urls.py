@@ -27,5 +27,6 @@ urlpatterns = [
     path('postsignup', views.postsignup, name="postsignup"),
     path('create_advertisement', views.create_advertisement, name="create_advertisement"),
     path('create', views.create, name="create"),
+    path('your_advertisements', views.your_advertisements, name="your_advertisements"),
 ]
 
