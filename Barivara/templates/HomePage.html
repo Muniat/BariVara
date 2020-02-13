@@ -1,10 +1,47 @@
 {% extends "Base.html"%}
+<style>
+	 .cards {
+ 
+       display: grid;
+ 
+       grid-template-columns: repeat(3, 1fr);
+ 
+       grid-auto-rows: auto;
+ 
+       grid-gap: 1rem;
+ 
+      }
+      .card {
+ 
+       border: 2px solid #e7e7e7;
+ 
+       border-radius: 4px;
+ 
+       padding: .5rem;
+ 
+      }
+     
+      
+</style>
 
 {% block content %}
 
-{% for time,dat,advertisements in comb_lis %}
-        >Date: {{dat}} &nbsp; Advertisement: {{advertisements}}
+{% for ad in data %}
+                
+                 
+                 <div class="card" style="width: 18rem;">
+                   
 
-    {% endfor %}
+                   <!--  <img class="card-img-top" src="{{ product.image }}" alt="Card image cap"> -->
+                     <div class="card-body">
+                         <h5 class="card-title">{{ ad.address }}</h5>
+                         <p class="price">Fee: {{ ad.fee }}</p>
+                         <button type="submit" class="btn btn-primary" onclick="location.href='advertisement_details/?z={{time}}'">Click Here to view Full Details</button>
+                     </div>
+                    
+                 </div>
+                 
+                
+                {% endfor %}
 
 {% endblock content %}

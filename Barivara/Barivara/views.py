@@ -32,8 +32,27 @@ def postsign(request):
       return render(request, "LoginPage.html",{"message":message})
     print(user['idToken'])
     session_id = user['idToken']
-    request.session['uid'] = str(session_id)  
-    return render(request, "HomePage.html")
+    request.session['uid'] = str(session_id)
+    idtoken = request.session['uid']
+    a = authe.get_account_info(idtoken)
+    a = a['users']
+    a = a[0]
+    a = a['localId']
+
+    data = []
+
+    #fetching data from the database
+    all_ad = database.child("users").child(a).child("advertisements").get()
+    for ad in all_ad.each():
+        #adding each advertisement to the list 'data'
+        data.append(ad.val()) 
+
+
+    return render(request, "HomePage.html", {'data':data})
+
+
+
+
 def logout(request):
     auth.logout(request)
     return render(request, "LoginPage.html")
