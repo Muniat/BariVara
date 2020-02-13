@@ -35,10 +35,7 @@ def postsign(request):
     request.session['uid'] = str(session_id)  
     return render(request, "HomePage.html")
 def logout(request):
-    try:
-      del request.session['uid']
-    except KeyError:
-      pass
+    auth.logout(request)
     return render(request, "LoginPage.html")
 
 def postgooglelogin(request):
@@ -60,8 +57,8 @@ def postsignup(request):
 
     data = {"name":name,"status":"1", "Phone":number}
     
-    database.child("users").child(uid).child("details").set(data,idtoken)
-    return render(request, "LoginPage.html")
+    database.child("users").child(uid).child("details").set(data)
+    return render(request, "HomePage.html")
 
 def create_advertisement(request):
 
@@ -83,22 +80,20 @@ def create(request):
     fee=request.POST.get('fee')
     house_details=request.POST.get('house_details')
 
-    try:
-      idtoken = request.session['uid']
-      a = authe.get_account_info(idtoken)
-      a = a['users']
-      a = a[0]
-      a = a['localId']
-      print("info"+str(a))
+    idtoken = request.session['uid']
+    a = authe.get_account_info(idtoken)
+    a = a['users']
+    a = a[0]
+    a = a['localId']
+    print("info"+str(a))
 
 
-      data={"owner":name,"contact":number,"address":address,"size":size,"fee":fee,"house_details":house_details}
-      database.child('users').child(a).child('advertisements').child(millis).set(data,idtoken)
-      return render(request, "HomePage.html")
-    except KeyError:
-      message = "You are logged out of the system! Please login again."
-      return render(request, "LoginPage.html",{"message":message})
+    data={"owner":name,"contact":number,"address":address,"size":size,"fee":fee,"house_details":house_details}
+    database.child('users').child(a).child('advertisements').child(millis).set(data)
+    return render(request, "HomePage.html")   
 
+
+	
 def your_advertisements(request):
 
     import datetime  
@@ -111,6 +106,7 @@ def your_advertisements(request):
     timestamps = database.child('users').child(a).child('advertisements').shallow().get(idtoken).val()
     
     lis_time=[]
+    
 
     for i in timestamps:
       lis_time.append(i)
@@ -122,7 +118,7 @@ def your_advertisements(request):
     advertisements = []
 
     for i in lis_time:
-      adv = database.child('users').child(a).child('advertisements').child(i).get(idtoken).val()
+      adv = database.child('users').child(a).child('advertisements').child(i).child('address').get(idtoken).val()
       advertisements.append(adv)
 
     print(advertisements)
@@ -137,4 +133,24 @@ def your_advertisements(request):
     
     comb_lis = zip(lis_time,date,advertisements)
 
-    return render(request,'your_advertisements.html',{'comb_lis':comb_lis})
+    return render(request,'your_advertisements.html',{'comb_lis':comb_lis}) 
+
+def advertisement_details(request):
+  import datetime
+  time=request.GET.get('z')
+  idtoken = request.session['uid']
+  a = authe.get_account_info(idtoken)
+  a = a['users']
+  a = a[0]
+  a = a['localId']
+
+  address= database.child('users').child(a).child('advertisements').child(time).child('address').get(idtoken).val()
+  contact= database.child('users').child(a).child('advertisements').child(time).child('contact').get(idtoken).val()
+  fee= database.child('users').child(a).child('advertisements').child(time).child('fee').get(idtoken).val()
+  house_details= database.child('users').child(a).child('advertisements').child(time).child('house_details').get(idtoken).val()
+  owner= database.child('users').child(a).child('advertisements').child(time).child('owner').get(idtoken).val()
+  size= database.child('users').child(a).child('advertisements').child(time).child('size').get(idtoken).val()
+
+  i=float(time)
+  date=datetime.datetime.fromtimestamp(i).strftime('%H:%M %d-%m-%Y')
+  return render(request,"advertisement_details.html", {'a':address,'c':contact,'f':fee,'h':house_details,'o':owner,'s':size,'d':date})

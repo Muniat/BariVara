@@ -1,79 +1,66 @@
 {% extends "HomePage.html"%}
-<!--<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-</head>
-<title></title>
-<body>
-<form action="create" method="post">
-    {% csrf_token %}
-    <h2>Create Advertisement for your house </h2>
-    House Owner:
-    <input type="text" name="name" required><br><br>
-    Contact Number:
-    <input type="number" name="number" required><br><br>
-    Address:
-    <input type="text" name="address" required><br><br>
-    Flat/Apartment Size (In square feet):
-    <input type="number" name="size" required><br><br>
-    Rent fee per month (In Taka):
-    <input type="number" name="fee" required><br><br>
-    House Details:
-    <input type="text" name="house_details" required><br><br>
 
-    <input type="submit" value="Create Advertisement">
-</form>
-</body>
-</html>
--->
 {% block content %}
-<style>
-    .wrapper2 form{
-    width: 40%;
-    height: 55%;
-    background-color: #2C3E50;
-    top: 30%;
-    left: 30%;
+ <style>
+.container form{
+    margin-top: 5%;
+    height: auto;
+    top: 50%;
+    left: 50%;
     box-sizing: border-box;
-    position: absolute;
+    border: 2px solid black;
     text-align: center;
-    }
-    .wrapper2 form h2{
-        padding:2%;
-        margin: 2%;
-    }
-    .wrapper2 form input[type="text"],input[type="number"]{
-        padding: 1%;
-        width: 40%;
-        height: 2vh;
-    }
-    .wrapper2 form input[type="text"]:hover,input[type="number"]:hover,input[type="Submit"]:hover{
-        background-color: #AEB6BF;
-    }
+    
+    box-shadow: 5px 5px 50px #000;
+    padding-bottom: 2%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.container h1, p {
+    color: white;
+}
+.container:hover{
+    background-color:rgba(0, 0, 0, 0.3)
+}
+
+.container form input{
+    width: 50%;
+    margin-left: 5%;
+    border: 1px solid black;
+}
+.container form input:hover{
+    background-color: #34495E;
+}</style>
 
 
+<div class=" container">
+    <div class="col-sm">
+            <form action="postsignup" method="post">
+            {% csrf_token %}
+                <h1>Post an Advertisement</h1>
+                <p>Quicker, Easier and Faster</p>
+                <div class="form-group">
+                    <input type="text" placeholder=" House Owner"name="name" required>
+                </div>
+                <div class="form-group">
+                    <input type="number" placeholder="Contact Number" name="number" required>
+                </div>
+                <div class="form-group">
+                    <input type="text"placeholder="Address" name="address" required>
+                </div>
+                <div class="form-group">
+                  <input type="number"placeholder="Flat/Apartment Size (In square feet)" name="size" required>
+                </div>
+                <div class="form-group">
+                    <input type="number" placeholder="Rent fee per month (In Taka):" name="fee" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="House Details" name="house_details" required>
+                </div>
+                
 
-</style>
-<div class="wrapper2">
-<form action="create" method="post">
-    {% csrf_token %}
-    <h2>Create Advertisement for your house </h2>
-    
-    <input type="text" placeholder=" House Owner"name="name" required><br><br>
-    
-    <input type="number" placeholder="Contact Number" name="number" required><br><br>
-    
-    <input type="text"placeholder="Address" name="address" required><br><br>
-    
-    <input type="number"placeholder="Flat/Apartment Size (In square feet)" name="size" required><br><br>
-    
-    <input type="number" placeholder="Rent fee per month (In Taka):" name="fee" required><br><br>
-    
-    <input type="text" placeholder="House Details" name="house_details" required><br><br>
-
-    <input type="submit" value="Create Advertisement">
-</form>
-</div>
+                <button type="submit" class="btn btn-primary">Post</button>
+              </form>
+        </div>
+    </div>
                 
 {% endblock content %}

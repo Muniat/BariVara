@@ -1,237 +1,134 @@
-{% if message %}
-<script>
-    alert('{{ message }}');
-</script>
-{% endif %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" shrink-to-fit=no">
     <title>Welcome to BariVara</title>
-</head>
-<style>
-    *{
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">  
+    <style>
+        body{
             margin: 0;
             padding: 0;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            
-            
-        }
-        #main{
-            width: 100%;
-            height:100vh;
             background:linear-gradient(rgba(0,0,0,.3),rgba(0,0,0,.3)),url('/static/City0.jpg') no-repeat;
-        }
-        nav{
-            width: 100%;
-            height:14%;
-            background-color:  #0b5345    ;
-            line-height: 80px;
-        }
+        }      
         nav img{
-            margin-left: 15%;
+            width: 6%;
+            height: auto;
+            margin-left: 10%;
+             
         }
-        nav form {
-            float:right;
-            margin-right: 13%;
+        nav form{
+            margin-right: 50px;
+        }
+        nav form button i {
+            margin-right: 3%;
         }
         nav form input{
-            height: 30px;
-            background: white;
+            border: 1px solid black;
+        }
+        nav form input:hover{
+            background-color:#52BE80;
+        }
+
+
+        .container form{
+            margin-top: 5%;
+            height: auto;
+            top: 50%;
+            left: 50%;
+            box-sizing: border-box;
+            border: 2px solid black;
+            text-align: center;
             
+            box-shadow: 5px 5px 50px #000;
+            padding-bottom: 2%;
+            background-color: rgba(0, 0, 0, 0.5);
         }
-        nav form input[type="password"]:hover{
-            border: none;
-            border-bottom: 3px solid black;
-            background: #AAB7B8   ;
-            outline: none;
-
-        }
-        nav form input[type="email"]:hover{
-            border: none;
-            border-bottom: 3px solid black;
-            background: #AAB7B8    ;
-            outline: none;
-        
-        }
-        nav form input[type="submit"]{
-            border: 1px solid black;
-            background: #2C3E50;
+        .container h1, p {
             color: white;
-            width: 10%;
         }
-        nav form input[type="submit"]:hover{
-            background: #239B56  ;
+        .container:hover{
+            background-color:rgba(0, 0, 0, 0.3)
+        }
+
+        .container form input{
+            width: 50%;
+            margin-left: 25%;
+        }
+        .container form input:hover{
+            background-color: #52BE80;
+        }
+
+
+        .card{
+            margin-top: 270px;
+            margin-bottom: 0px;
+            height: 20%;
+            background-color: #0b5345
+        }
+        .card img{
+            background-color:#0b5345;
+            border: none;
         }
         
-        nav form button[type="button"]{
-            border: 1px solid black;
-            background: #2C3E50;
-            color: white;
-            width: 21%;
-            height: 5%;
-            padding: 2%;
-            background-color: #5DADE2;
-        }
-        nav form button img{
-            float: left;
-        }
-        nav form button[type="button"]:hover{
-            background: #AED6F1  ;
-        } /* Css for NavBar Ends here*/     
-
-
-
-
- .wrapper{
-
-    width: 45%;
-    height: 55%;
-    background-color: #2C3E50;
-    top: 30%;
-    left: 28%;
-    box-sizing: border-box;
-    position: absolute;
-    text-align: center;
-    background-color:   #0b5345  ;
-    box-shadow: 10px 10px 50px #000
-    /*
-    width: 500px;
-    height: 500px;
-    color:white;
-    background-color:   #0b5345  ;
-    top: 60%;
-    left: 50%;
-    padding: 60px 30px;
-    position: absolute;
-    transform: translate(-50% , -50%);
-    box-sizing: border-box;
-    box-shadow: 10px 10px 50px #000 ;*/
     
-}
-
-.wrapper p {
-    
-    margin: 1%;
-}
-.wrapper h1{
-    margin: 0;
-    padding: 0;
-    padding-bottom: 1%;
-    font-weight: bold;
-    font-size: 30px;
-    color: #fff;
-    text-align: center;
-
-}
-
-.wrapper form input{
-    color: black;
-    font-weight: bold;
-    font-size: 15px;
-    width: 50%;
-    height: 3vh;
-    margin-bottom: 2%;
-    background: white;
-    float: center;
-}
-
-.wrapper form input[type="submit"]{
-    background-color:#566573  ;
-    width: 20%;
-    font-size: 2vh;
-    border: none;
-    border: 1px solid black;
-    height: 5vh;
-}
-
-.wrapper form input[type="submit"]:hover{
-    background-color:#239B56     ;
-}
-.wrapper form input[type="text"], input[type="password"], input[type="email"]{
-    border: none;
-    border-bottom: 2px solid black;
-    outline: none;
-    background: white;
-}
-.wrapper form input[type="text"]:hover{
-    background-color:#ABEBC6    ;
-}
-.wrapper form input[type="password"]:hover{
-    background-color:#ABEBC6   ;
-}
-.wrapper form input[type="email"]:hover{
-    background-color:#ABEBC6    ;
-}
-
-.wrapper form button{
-    width: 20%;
-    height: 5vh;
-    background-color: #5DADE2 ;
-    border: 1px solid black;
-}
-
-.wrapper form button:hover{
-    background-color: #AED6F1  ;
-}
-.wrapper form button img{
-    float: left;
-    margin: 2.5%;
-}
-.wrapper form button a{
-    font-size: 1.6vh;
-    
-}
-
-
-</style>
-
+    </style>
+</head>
 <body>
-    <div id="main">
-        
-        <nav>
-        <img src="/static/Logo.png" alt="Logo" width="15%" height="100%" >
-            <form action="postsign" method="post">
+    <nav class="navbar navbar-light" style="background-color: #0b5345">
+        <img src="/static/Logo.png">
+        <form action="postsign" method="post" >
+        {% csrf_token %}
+        <input type="email" placeholder="Email" name="email">
+        <input type="password" placeholder="Password" name="pass">
+        <button type="submit" class="btn btn-success">Login</button>
+        <button type="button" class="btn btn-primary" onclick="location.href='{% url 'social:begin' 'google-oauth2' %}'" class="google btn"><i class="fab fa-google"></i><a>Log In with Google</a>
+        </form>
+    </nav>
+    
+    <div class=" container">
+        <div class="col-sm">
+                <form action="postsignup" method="post">
                 {% csrf_token %}
-                <input type="email" placeholder="Email" name="email">
-                <input type="password" placeholder="Password" name="pass">
-                <input type="submit" value="Log In">
-                <button type="button" onclick="location.href='{% url 'social:begin' 'google-oauth2' %}'" class="google btn"><img src="/static/google.png"><a>Log In with Google</a>
-            </form>
-        </nav>
-        <div class="wrapper">
-            
-            <img src="/static/followers.png" alt="Logo" width="13%" height="20%" style=" margin:3% ;">
-            <h1>Create An Account</h1>
-            <p>Quicker, Easier and Faster</p>
-            <form action="postsignup" method="post">
-                {% csrf_token %}
-                <input type="text" placeholder="Name" name="name">
-                <input type="text" placeholder="Phone Number" name="number">
-                <input type="email" placeholder="Email" name="email">
-                <input type="password" placeholder="Password" name="pass"><br>          
-                <input type="submit" value="Sign Up">
-                <button type="button" onclick="location.href='{% url 'social:begin' 'google-oauth2' %}'" class="google btn"><img src="/static/google.png"><a>Log In with Google</a>
-            </form>
+                    <h1>Create an Account</h1>
+                    <p>Quicker, Easier and Faster</p>
+                    <div class="form-group">
+                        <input type="text" class="form-control"  placeholder="Name" name="name" >
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control"  placeholder="Phone Number" name="number">
+                    </div>
+                    <div class="form-group">
+                      <input type="email" class="form-control"  aria-describedby="emailHelp" placeholder="Enter email" name="email">
+                    </div>
+                    <div class="form-group">
+                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="pass"> 
+                    </div>
+                    <small  class="form-text " style="color: white;">We'll never share your information with anyone else.</small>
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                  </form>
+            </div>
         </div>
+    
 
-        
-        
-    </div>
+        <div class="card">
+            <div class="card-header">
+              <h1>Contact Us</h1>
+            </div>
+            <div class="card-body">
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=SHADMAN.SAQIF@northsouth.edu.com" > <img src="/static/gmail.png" alt="gmailLogo" class="img-thumbnail" style="width: 10%;height: 10%;"</a>
+              <img src="/static/yahoo.png" alt="gmailLogo" class="img-thumbnail" style=" border-radius:50%;margin-left:80px;width: 10%;height: 10%;"> </a>
+            <a href="https://bitbucket.org/Md_Mashrur_Sadat/new-299-project/src/master/" > <img src="/static/bitbucket.png" alt="bitBucketLogo" class="img-thumbnail" style="margin-left:80px;width:120px; width: 10%;height: 10%;"> </a>
+              
+            </div>
+          </div>
+
     
 
 
-
-
-    <div class="footer">
-        <div class="jumbotron" style="border: 10px solid black;background-color:#2C3E50; color: white;" >
-            <!-- <h1 class="display-4">Contacts</h1>  -->
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=SHADMAN.SAQIF@northsouth.edu.com" > <img src="/static/gmail.png" alt="gmailLogo" class="img-thumbnail" style="margin-left:550px;width:128px; height:128x;"> </a>
-            <img src="/static/yahoo.png" alt="gmailLogo" class="img-thumbnail" style=" border-radius:50%;margin-left:80px;width:128px; height:128x;"> </a>
-            <a href="https://bitbucket.org/Md_Mashrur_Sadat/new-299-project/src/master/" > <img src="/static/bitbucket.png" alt="bitBucketLogo" class="img-thumbnail" style="margin-left:80px;width:128px; height:128x;"> </a>
-          </div>
-    </div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>

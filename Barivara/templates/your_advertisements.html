@@ -1,4 +1,29 @@
-<!DOCTYPE html>
+{% extends "Base.html"%}
+
+{% block content %}
+    <style>
+        .container{
+            border: 2px solid white;
+        }
+    </style>
+    
+    {% for time,dat,advertisements in comb_lis %}
+        <div class="container">
+            <div class="row">
+              <div class="col">Date: {{dat}} &nbsp; Advertisement: {{advertisements}}</div>
+            <button type="submit" class="btn btn-primary" onclick="location.href='advertisement_details/?z={{time}}'">Click Here to view Full Details</button>
+              <div class="w-100"></div>
+            
+            </div>
+          </div>
+      
+        
+<br>
+
+    {% endfor %}</div>
+
+{% endblock content %}
+<!--<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -122,4 +147,4 @@
           </div>
     </div>	
 </body>
-</html>
+</html>-->

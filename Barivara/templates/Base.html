@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">  
+    <title>BariVara</title>
+</head>
+<style>
+    */*{
+            margin: 0;
+            padding: 0;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            
+        }
+        #main{
+            width: 100%;
+            height: 100vh;
+            
+        }
+        nav{
+            width: 100%;
+            height: 100px;
+            background-color:#2C3E50 ;
+            line-height: 80px;
+        }
+        nav ul {
+            float:right;
+            margin-right: 20px;
+        }
+        nav ul li {
+            list-style-type: none;
+            display: inline-block;
+            transition: 0.8s all;
+        }
+        nav ul li:hover{
+            background-color:#566573 ;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            padding: 30px;
+        }
+*/
+        nav{
+        width: 100%;
+        }
+        nav img{
+            width: 6%;
+            height: auto;
+            margin-left: 10%;
+        }
+        nav ul li {
+            list-style-type: none;
+            display: inline-block;
+            
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            padding-right: 15px;
+            display: inline-block;
+            border: none;
+        }
+        nav ul li a:hover {
+            background-color: #85929E ;
+        }
+        
+        
+        
+        .load {
+            animation: slide 2s;
+        }
+        .slider{
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            width: 100%;
+            height: 100vh;
+            animation: slide 20s infinite;
+        }
+        .content {
+            color:white;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(0,0,0,0.3);
+        }
+        
+        @keyframes slide {
+            0%{
+                background-image: url('/static/City1.jpg');
+            }
+            20%{
+                background-image: url('/static/City2.jpg');
+            }
+            40%{
+                background-image: url('/static/City3.jpg');
+            }
+            60%{
+                background-image: url('/static/City4.jpg');
+            }
+            80%{
+                background-image: url('/static/City5.jpg');
+            }
+            100%{
+                background-image: url('/static/City1.jpg');
+            }
+        }
+        .card{
+            
+            margin-bottom: 0px;
+            height: 20%;
+            background-color: #2C3E50
+        }
+        .card img{
+            background-color:#2C3E50;
+            border: none;
+        }
+        
+    
+</style>
+<body>
+    <div class="slider">
+        <div class="load">
+        </div>
+        <div class="content">
+            <div class="principal">
+
+
+            <div id="main">
+                
+                <nav class="navbar navbar-light" style="background-color: #2C3E50">
+                    <img src="/static/Logo.png">
+                    <ul>
+                    <li> <a href='{% url 'welcome' %}'> Home </a></li>
+                    <li> <a href='{% url 'create_advertisement' %}'> Create Advertisement </a></li>
+					<li> <a href='{% url 'your_advertisements' %}'> Your Advertisements </a></li>
+                    <li> <a href="#"> About</a></li>
+                    <li> <a href='{% url 'log' %}'> Log Out </a></li>
+                    </ul>
+                    
+                    
+                </nav>
+                {% block content %}
+
+                
+                {% endblock content %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+          <h1>Contact Us</h1>
+        </div>
+        <div class="card-body">
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=SHADMAN.SAQIF@northsouth.edu.com" > <img src="/static/gmail.png" alt="gmail" class="img-fluid" style="width: 10%;height: 10%;"> </a>
+          <img src="/static/yahoo.png" alt="yahoo" class="img-fluid" style=" border-radius:50%;margin-left:80px;width: 10%;height: 10%;"> </a>
+        <a href="https://bitbucket.org/Md_Mashrur_Sadat/new-299-project/src/master/" > <img src="/static/bitbucket.png" alt="gmail" class="img-fluid" style="margin-left:80px;width: 10%;height: 10%;"> </a>
+          
+        </div>
+    </div>
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
