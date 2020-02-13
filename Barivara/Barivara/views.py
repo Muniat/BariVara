@@ -173,3 +173,28 @@ def advertisement_details(request):
   i=float(time)
   date=datetime.datetime.fromtimestamp(i).strftime('%H:%M %d-%m-%Y')
   return render(request,"advertisement_details.html", {'a':address,'c':contact,'f':fee,'h':house_details,'o':owner,'s':size,'d':date})
+  
+  
+ def edit_advertisement(request):
+  import datetime
+  time=request.GET.get('z')
+  idtoken = request.session['uid']
+  a = authe.get_account_info(idtoken)
+  a = a['users']
+  a = a[0]
+  a = a['localId']
+
+  name=request.POST.get('name')
+  number=request.POST.get('number')  
+  address=request.POST.get('address')
+  size=request.POST.get('size')
+  fee=request.POST.get('fee')
+  house_details=request.POST.get('house_details')
+
+  i=float(time)
+  date=datetime.datetime.fromtimestamp(i).strftime('%H:%M %d-%m-%Y')
+  
+  data={"owner":name,"contact":number,"address":address,"size":size,"fee":fee,"house_details":house_details}
+  database.child('users').child(a).child('advertisements').child(time).update(data)
+
+  return render(request,'edit_advertisement.html')
