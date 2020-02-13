@@ -65,7 +65,18 @@
             border: none;
         }
         nav ul li a:hover {
-            background-color: #85929E ;
+            background-color: #34495E;
+            color:black;
+        }
+
+        nav form button i{
+            margin-right: 6%;
+        }
+
+        @media(max-width: 1062px){
+            nav form {
+                margin-left:50%;
+            }
         }
         
         
@@ -118,6 +129,7 @@
             background-color:#2C3E50;
             border: none;
         }
+
         
     
 </style>
@@ -127,19 +139,24 @@
         </div>
         <div class="content">
             <div class="principal">
-
-
             <div id="main">
-                
                 <nav class="navbar navbar-light" style="background-color: #2C3E50">
                     <img src="/static/Logo.png">
+
                     <ul>
-                    <li> <a href='{% url 'welcome' %}'> Home </a></li>
-                    <li> <a href='{% url 'create_advertisement' %}'> Create Advertisement </a></li>
-					<li> <a href='{% url 'your_advertisements' %}'> Your Advertisements </a></li>
-                    <li> <a href="#"> About</a></li>
-                    <li> <a href='{% url 'log' %}'> Log Out </a></li>
+                        <li> <a href='{% url 'welcome' %}'> Home </a></li>
+                        <li> <a href='{% url 'create_advertisement' %}'> Create Advertisement </a></li>
+                        <li> <a href='{% url 'your_advertisements' %}'> Your Advertisements </a></li>
+                        
+                        <li> <a href="#"> About</a></li>
+                        <li> <a href='{% url 'log' %}'> Log Out </a></li>
                     </ul>
+                    
+                     <form class="form-inline">
+                     <input class="form-control mr-sm-2" type="search" placeholder="Search"  aria-label="Search">
+                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i><a>Search</a></button>
+                    </form>
+
                     
                     
                 </nav>
