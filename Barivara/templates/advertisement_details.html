@@ -2,12 +2,25 @@
 
 {% block content %}
 
-Date: {{d}}
-Address: {{a}}
-House_Details: {{h}}
-Size: {{s}}
-Rent: {{f}}
-Owner: {{o}}
-Contact: {{c}}
+<style>
+    .container{
+        border: 2px solid white;
+        font-size: xx-large;
+    }
+</style>
+
+<div class="container">
+    
+      
+      Date: {{d}}<br>
+      Address: {{a}}<br>
+      House_Details: {{h}}<br>
+      Size (In Square feet): {{s}}<br>
+      Rent (In Taka): {{f}}<br>
+      Owner: {{o}}<br>
+      Contact Number: {{c}}<br>
+    
+  </div>
+
 
 {% endblock content %}
