@@ -26,7 +26,8 @@
 
 {% block content %}
 
-{% for ad in data %}
+
+{% for time,dat,advertisements in comb_lis %}
                 
                  
                  <div class="card" style="width: 18rem;">
@@ -34,14 +35,13 @@
 
                    <!--  <img class="card-img-top" src="{{ product.image }}" alt="Card image cap"> -->
                      <div class="card-body">
-                         <h5 class="card-title">{{ ad.address }}</h5>
-                         <p class="price">Fee: {{ ad.fee }}</p>
-                         <button type="submit" class="btn btn-primary" onclick="location.href='advertisement_details/?z={{time}}'">Click Here to view Full Details</button>
+                         <h5 class="card-title">Advertisement: {{ advertisements }}</h5>
+                         <button type="submit" class="btn btn-primary" onclick="location.href='advertisement_details/?z={{time}}'">Click Here to view Full Details</button> 
                      </div>
                     
                  </div>
                  
-                
                 {% endfor %}
+                
 
 {% endblock content %}

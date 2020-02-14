@@ -23,6 +23,8 @@ def signIn(request):
     return render(request, "LoginPage.html")
 
 def postsign(request):
+    
+    import datetime
     email = request.POST.get('email')
     password = request.POST.get('pass')
     try:
@@ -39,16 +41,44 @@ def postsign(request):
     a = a[0]
     a = a['localId']
 
-    data = []
+    #data = []
 
     #fetching data from the database
-    all_ad = database.child("users").child(a).child("advertisements").get()
-    for ad in all_ad.each():
+    #all_ad = database.child("users").child(a).child("advertisements").get()
+    #for ad in all_ad.each():
         #adding each advertisement to the list 'data'
-        data.append(ad.val()) 
+        #data.append(ad.val())
+    timestamps = database.child('users').child(a).child('advertisements').shallow().get(idtoken).val()
+    
+    lis_time=[]
+    
 
+    for i in timestamps:
+      lis_time.append(i)
 
-    return render(request, "HomePage.html", {'data':data})
+    lis_time.sort(reverse=True)
+    
+    print(lis_time)
+
+    advertisements = []
+
+    for i in lis_time:
+      adv = database.child('users').child(a).child('advertisements').child(i).child('address').get(idtoken).val()
+      advertisements.append(adv)
+
+    print(advertisements)
+
+    date = []
+    for i in lis_time:
+      i = float(i)
+      dat = datetime.datetime.fromtimestamp(i).strftime('%H:%M %d-%m-%Y')
+      date.append(dat)
+
+    print(date)  
+    
+    comb_lis = zip(lis_time,date,advertisements)
+   
+    return render(request, "HomePage.html", {'comb_lis':comb_lis})
 
 
 
@@ -77,7 +107,7 @@ def postsignup(request):
     data = {"name":name,"status":"1", "Phone":number}
     
     database.child("users").child(uid).child("details").set(data)
-    return render(request, "HomePage.html")
+    return render(request, "LoginPage.html")
 
 def create_advertisement(request):
 
@@ -155,46 +185,46 @@ def your_advertisements(request):
     return render(request,'your_advertisements.html',{'comb_lis':comb_lis}) 
 
 def advertisement_details(request):
-  import datetime
-  time=request.GET.get('z')
-  idtoken = request.session['uid']
-  a = authe.get_account_info(idtoken)
-  a = a['users']
-  a = a[0]
-  a = a['localId']
+   import datetime
+   time=request.GET.get('z')
+   idtoken = request.session['uid']
+   a = authe.get_account_info(idtoken)
+   a = a['users']
+   a = a[0]
+   a = a['localId']
 
-  address= database.child('users').child(a).child('advertisements').child(time).child('address').get(idtoken).val()
-  contact= database.child('users').child(a).child('advertisements').child(time).child('contact').get(idtoken).val()
-  fee= database.child('users').child(a).child('advertisements').child(time).child('fee').get(idtoken).val()
-  house_details= database.child('users').child(a).child('advertisements').child(time).child('house_details').get(idtoken).val()
-  owner= database.child('users').child(a).child('advertisements').child(time).child('owner').get(idtoken).val()
-  size= database.child('users').child(a).child('advertisements').child(time).child('size').get(idtoken).val()
+   address= database.child('users').child(a).child('advertisements').child(time).child('address').get(idtoken).val()
+   contact= database.child('users').child(a).child('advertisements').child(time).child('contact').get(idtoken).val()
+   fee= database.child('users').child(a).child('advertisements').child(time).child('fee').get(idtoken).val()
+   house_details= database.child('users').child(a).child('advertisements').child(time).child('house_details').get(idtoken).val()
+   owner= database.child('users').child(a).child('advertisements').child(time).child('owner').get(idtoken).val()
+   size= database.child('users').child(a).child('advertisements').child(time).child('size').get(idtoken).val()
 
-  i=float(time)
-  date=datetime.datetime.fromtimestamp(i).strftime('%H:%M %d-%m-%Y')
-  return render(request,"advertisement_details.html", {'a':address,'c':contact,'f':fee,'h':house_details,'o':owner,'s':size,'d':date})
+   i=float(time)
+   date=datetime.datetime.fromtimestamp(i).strftime('%H:%M %d-%m-%Y')
+   return render(request,"advertisement_details.html", {'a':address,'c':contact,'f':fee,'h':house_details,'o':owner,'s':size,'d':date})
   
   
- def edit_advertisement(request):
-  import datetime
-  time=request.GET.get('z')
-  idtoken = request.session['uid']
-  a = authe.get_account_info(idtoken)
-  a = a['users']
-  a = a[0]
-  a = a['localId']
+def edit_advertisement(request):
+   import datetime
+   time=request.GET.get('z')
+   idtoken = request.session['uid']
+   a = authe.get_account_info(idtoken)
+   a = a['users']
+   a = a[0]
+   a = a['localId']
 
-  name=request.POST.get('name')
-  number=request.POST.get('number')  
-  address=request.POST.get('address')
-  size=request.POST.get('size')
-  fee=request.POST.get('fee')
-  house_details=request.POST.get('house_details')
+   name=request.POST.get('name')
+   number=request.POST.get('number')  
+   address=request.POST.get('address')
+   size=request.POST.get('size')
+   fee=request.POST.get('fee')
+   house_details=request.POST.get('house_details')
 
-  i=float(time)
-  date=datetime.datetime.fromtimestamp(i).strftime('%H:%M %d-%m-%Y')
+   i=float(time)
+   date=datetime.datetime.fromtimestamp(i).strftime('%H:%M %d-%m-%Y')
   
-  data={"owner":name,"contact":number,"address":address,"size":size,"fee":fee,"house_details":house_details}
-  database.child('users').child(a).child('advertisements').child(time).update(data)
+   data={"owner":name,"contact":number,"address":address,"size":size,"fee":fee,"house_details":house_details}
+   database.child('users').child(a).child('advertisements').child(time).update(data)
 
-  return render(request,'edit_advertisement.html')
+   return render(request,'edit_advertisement.html')

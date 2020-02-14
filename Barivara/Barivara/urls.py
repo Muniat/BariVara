@@ -20,7 +20,7 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.signIn),
-    path('postsign', views.postsign),
+    path('postsign', views.postsign, name="home"),
     path('welcome', views.postgooglelogin, name="welcome"),
     path('api/v1/',include('social_django.urls', namespace='social')),
     path('logout', views.logout, name="log"),
