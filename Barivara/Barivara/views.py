@@ -41,6 +41,7 @@ def postsign(request):
     a = a[0]
     a = a['localId']
 
+    
     #data = []
 
     #fetching data from the database
@@ -158,7 +159,7 @@ def your_advertisements(request):
     a = a[0]
     a = a['localId']
     
-    if(database.child('users').child(a).child('advertisements').shallow().get(idtoken).val() != True):
+    if(database.child('users').child(a).child('advertisements').shallow().get(idtoken).val() == False):
       return render (request,"no_advertisements.html")
     else:
         timestamps = database.child('users').child(a).child('advertisements').shallow().get(idtoken).val()
