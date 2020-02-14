@@ -48,6 +48,7 @@ def postsign(request):
     #for ad in all_ad.each():
         #adding each advertisement to the list 'data'
         #data.append(ad.val())
+    '''
     timestamps = database.child('users').child(a).child('advertisements').shallow().get(idtoken).val()
     
     lis_time=[]
@@ -77,8 +78,9 @@ def postsign(request):
     print(date)  
     
     comb_lis = zip(lis_time,date,advertisements)
-   
-    return render(request, "HomePage.html", {'comb_lis':comb_lis})
+    '''
+    return render(request, "HomePage.html") #{'comb_lis':comb_lis})
+    
 
 
 
@@ -142,6 +144,10 @@ def create(request):
     return render(request, "HomePage.html")   
 
 
+def no_advertisement(request):
+  return render(request,'no_advertisements.html')
+
+
 	
 def your_advertisements(request):
 
@@ -151,38 +157,38 @@ def your_advertisements(request):
     a = a['users']
     a = a[0]
     a = a['localId']
-
-    timestamps = database.child('users').child(a).child('advertisements').shallow().get(idtoken).val()
     
-    lis_time=[]
+    if(database.child('users').child(a).child('advertisements').shallow().get(idtoken).val() != True):
+      return render (request,"no_advertisements.html")
+    else:
+        timestamps = database.child('users').child(a).child('advertisements').shallow().get(idtoken).val()
+        lis_time=[]
+        for i in timestamps:
+          lis_time.append(i)
+
+        lis_time.sort(reverse=True)
     
+        print(lis_time)
 
-    for i in timestamps:
-      lis_time.append(i)
+        advertisements = []
 
-    lis_time.sort(reverse=True)
+        for i in lis_time:
+          adv = database.child('users').child(a).child('advertisements').child(i).child('address').get(idtoken).val()
+        advertisements.append(adv)
+
+        print(advertisements)
+
+        date = []
+        for i in lis_time:
+          i = float(i)
+          dat = datetime.datetime.fromtimestamp(i).strftime('%H:%M %d-%m-%Y')
+          date.append(dat)
+
+        print(date)  
     
-    print(lis_time)
+        comb_lis = zip(lis_time,date,advertisements)
 
-    advertisements = []
-
-    for i in lis_time:
-      adv = database.child('users').child(a).child('advertisements').child(i).child('address').get(idtoken).val()
-      advertisements.append(adv)
-
-    print(advertisements)
-
-    date = []
-    for i in lis_time:
-      i = float(i)
-      dat = datetime.datetime.fromtimestamp(i).strftime('%H:%M %d-%m-%Y')
-      date.append(dat)
-
-    print(date)  
-    
-    comb_lis = zip(lis_time,date,advertisements)
-
-    return render(request,'your_advertisements.html',{'comb_lis':comb_lis}) 
+        return render(request,'your_advertisements.html',{'comb_lis':comb_lis}) 
 
 def advertisement_details(request):
    import datetime
