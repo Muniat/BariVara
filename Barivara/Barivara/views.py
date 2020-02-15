@@ -235,3 +235,15 @@ def edit_advertisement(request):
    database.child('users').child(a).child('advertisements').child(time).update(data)
 
    return render(request,'edit_advertisement.html')
+
+def delete_advertisement(request):
+  import datetime
+  time=request.GET.get('z')
+  idtoken = request.session['uid']
+  a = authe.get_account_info(idtoken)
+  a = a['users']
+  a = a[0]
+  a = a['localId']
+
+  database.child('users').child(a).child('advertisements').remove(time)
+  return render (request, "HomePage.html")

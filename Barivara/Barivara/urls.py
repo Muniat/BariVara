@@ -31,5 +31,6 @@ urlpatterns = [
     path('advertisement_details/', views.advertisement_details, name="advertisement_details"),
     path('edit_advertisement/', views.edit_advertisement, name="edit_advertisement"),
     path('no_advertisement', views.no_advertisement, name="no_advertisement"),
+    path('delete_advertisement', views.delete_advertisement, name="delete_advertisement"),
 ]
 
