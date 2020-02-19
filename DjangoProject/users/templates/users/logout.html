@@ -1,0 +1,17 @@
+{% extends "users/base.html"%}
+
+{% block content %}
+<style>
+    .container{
+        margin-bottom: 30%;
+    }
+</style>
+<div class="container">
+    <h1>You Have been logged out</h1>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                <a class="ml-2" href="{% url 'login' %}" >Log In again</a>
+            </small>
+        </div>
+ </div>
+{% endblock content %}
