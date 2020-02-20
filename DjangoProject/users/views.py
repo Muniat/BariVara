@@ -17,3 +17,7 @@ def signup(request):
 def HomePage(request):
     return render(request, 'users/Login.html')
 
+#@login_required
+def profile(request):
+    return render(request, 'users/profile.html')
+
