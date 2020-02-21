@@ -1,6 +1,8 @@
 from django.shortcuts import render , redirect
 from django.contrib import messages
 from .forms import UserSignUpForm , UserUpdateForm, ProfileUpdateForm
+from django.contrib.auth.decorators import login_required
+
 
 def signup(request):
     if request.method =='POST':
@@ -17,16 +19,19 @@ def signup(request):
 def HomePage(request):
     return render(request, 'users/Login.html')
 
-#@login_required
+@login_required
 def profile(request):
     if request.method=='POST':
+        #data = Profile.objects.filter(user=request.user)
         update_form=UserUpdateForm(request.POST, instance=request.user)
         profile_form=ProfileUpdateForm(request.POST, request.FILES ,instance=request.user)
         if update_form .is_valid() and profile_form.is_valid():
             update_form.save()
             profile_form.save()
-            messages.success(request, f'Your account has been updated!!')
+            messages.success(request, f'Your account has been updated!')
             return redirect('profile')
+        else:
+            return render(request, 'users/profile.html')
     else:
         update_form=UserUpdateForm(instance=request.user)
         profile_form=ProfileUpdateForm(instance=request.user)
