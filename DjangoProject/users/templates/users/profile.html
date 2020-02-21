@@ -1,13 +1,58 @@
 {% extends "BariVara/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-  <div class="content-section">
+{% if messages %}
+    {% for message in messages %}
+      <div class=" alert-alert-{{message.tags}}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+  <style>
+	  #profile{
+		  margin-top: 1%;
+		  top: 50%;
+		  left: 80%; 
+	  }
+  </style>
+<div class="card" id="profile" style="width: 18rem;">
+	<img class="card-img-top" src="{{ user.profile.image.url }}" alt="Default photo">
+	<div class="card-body">
+		<h2 class="account-heading">{{ user.username }}</h2>
+		<p class="text-secondary">{{ user.email }}</p>
+		<form method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			<fieldset class="form-group">
+				<legend class="border-bottom mb-4"><h1>Profile Info</h1></legend>
+				{{ update_form|crispy }}
+				{{ profile_form|crispy }}
+			</fieldset>
+			<div class="form-group">
+				<button class="btn btn-oultline-info" type="submit"> Update </button>
+			</div>
+		</form>
+	</div>
+  </div>
+
+  <!--<div class="content-section">
   	<div class="media">
   		<img class="rounded-circle account img" src="{{ user.profile.image.url }}">
   		<div class="media-body">
   			<h2 class="account-heading">{{ user.username }}</h2>
   			<p class="text-secondary">{{ user.email }}</p>
   		</div>
-  	</div>
-  </div>
+	  </div>
+	  <form method="POST" enctype="multipart/form-data">
+		{% csrf_token %}
+		<fieldset class="form-group">
+			<legend class="border-bottom mb-4"><h1>Profile Info</h1></legend>
+			{{ update_form|crispy }}
+			{{ profile_form|crispy }}
+		</fieldset>
+		<div class="form-group">
+			<button class="btn btn-oultline-info" type="submit"> Update </button>
+		</div>
+	</form>
+  </div>-->
 {% endblock %}
+<script>document.querySelector(".custom-file-label").className += " mt-5"</script>
