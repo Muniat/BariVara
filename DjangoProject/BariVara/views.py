@@ -1,15 +1,23 @@
 from django.shortcuts import render , redirect
 from django.http import HttpResponse
 from .models import advertisements
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .import forms
 from django.contrib import messages
 
 # Create your views here.
 
 def HomePage(request):
+    advertisement={
+        'advertisements': advertisements.objects.all()
+    }
+    return render (request, 'BariVara/HomePage.html',advertisement)
+
+class AdvertisementDetailsView(DetailView):
+    model=advertisements
+    template_name= 'BariVara/advertisement_details.html'
+
     
-    return render (request, 'BariVara/HomePage.html',)
 
 def create_advertisements(request):
     form=forms.create_advertisements()

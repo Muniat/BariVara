@@ -1,0 +1,28 @@
+{% extends "BariVara/Base.html"%}
+
+
+{% block content %}
+  <style>
+      .container{
+          margin-top: 3%;
+          border: 5px solid black;
+      }
+      .p{
+          font-size: medium;
+      }
+  </style>
+<div class="container">
+         <h5 class="card-title">Location: {{object.place}} </h5>     
+         <h6 class="card-subtitle mb-2 text-muted">{{object.address}}</h6> 
+         <p>Area in squarefeet: {{object.size}}</p> 
+         <p>Number of bedrooms: {{object.bedroom}}</p>
+         <p>Number of Bathrooms: {{object.bathroom}}</p>
+         <p>Area in squarefeet: {{object.size}}</p>
+         <p>Rent per month: {{object.rent}}</p>
+         <legend class="border-bottom mb-4"><h1>Owner Information</h1></legend>
+         <p>Owner name: {{object.owner}}</p>
+         <p>Advertisement Posted on: {{object.date_posted}}</p>
+         
+
+  </div>
+{% endblock content %}
