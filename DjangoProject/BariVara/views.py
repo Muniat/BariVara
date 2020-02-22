@@ -6,14 +6,10 @@ from .import forms
 from django.contrib import messages
 
 # Create your views here.
-'''
-def LoginPage(request):
-    return render (request,'BariVara/LoginPage.html')'''
+
 def HomePage(request):
-    context = {
-        'advertisements' : advertisements.objects.all()
-    }
-    return render (request, 'BariVara/HomePage.html', context)
+    
+    return render (request, 'BariVara/HomePage.html',)
 
 def create_advertisements(request):
     form=forms.create_advertisements()
@@ -24,7 +20,7 @@ def create_advertisements(request):
             instance.owner= request.user
             instance.save()
             
-            return HttpResponse ("Post Created") # need to fix this url
+        return render (request, 'BariVara/HomePage.html',)
     else:
         form=forms.create_advertisements()
 

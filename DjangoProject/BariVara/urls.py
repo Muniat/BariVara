@@ -6,6 +6,6 @@ from . import views
 
 urlpatterns = [
     
-    path('', AdvertisementListView.as_view(), name='HomePage'),
+    path('', views.HomePage, name='HomePage'),
     path('create_advertisements',views.create_advertisements, name='create_advertisements'),
 ]
