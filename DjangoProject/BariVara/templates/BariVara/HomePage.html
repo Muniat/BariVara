@@ -9,23 +9,23 @@
     {% endfor %}
 {% endif %}
 
-  <div class="row">
+  <div class="col">
     <style>
       #information{
         margin-top: 1.5%;
-        margin-left: 1.5%;
+        margin-left: 35%;
         
       }
     </style>
 {% for advertisement in advertisements %}
 
-<div class="card" id="information" style="width: 18rem;">
+<div class="card" id="information" style="width: 28rem;">
   <div class="card-body">
     <h5 class="card-title">{{advertisement.place}}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">{{advertisement.address}}</h6>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <p>House/Apartment Size: {{advertisement.size}} squarefeet</p>
+    <p>Rent per month: {{advertisement.rent}} taka</p>
     <a href='{% url 'advertisement_details' advertisement.id  %}' class="card-link">Full Details</a>
-  </div>
+  </div><br>
 </div>
 
 
