@@ -55,7 +55,7 @@
             background-size: cover;
             background-position: center;
             width: 100%;
-            height: 100vh;
+            height: 120vh;
             animation: slide 20s infinite;
         }
         .content {
@@ -86,10 +86,11 @@
             }
         }
         .card{
-            
             margin-bottom: 0px;
-            height: 20%;
-            background-color: #2C3E50
+            width: 100%;
+            height: 10%;
+            background-color: #2C3E50;
+            bottom: 0;
         }
         .card img{
             background-color:#2C3E50;
@@ -111,7 +112,7 @@
 
                     <ul>
                         <li> <a href='#'> Home </a></li>
-                        <li> <a href='#'> Create Advertisement </a></li>
+                        <li> <a href='{% url 'create_advertisements' %}'> Create Advertisement </a></li>
                         <li> <a href='#'> Your Advertisements </a></li>
                         <li> <a href='{% url 'profile' %}'> Profile </a></li>
                         

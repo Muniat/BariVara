@@ -13,7 +13,7 @@ class advertisements(models.Model):
     size=models.PositiveIntegerField()
     date_posted=models.DateTimeField(default=timezone.now)
     owner= models.ForeignKey(User,on_delete=models.CASCADE)
-    slug=models.CharField(max_length=30)
+    slug=models.SlugField()
     #images and google location will be added later
 
 
