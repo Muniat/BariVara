@@ -18,17 +18,22 @@
       }
     </style>
 {% for advertisement in advertisements %}
-
+{% if advertisement.owner == user %}
   <div class="card" id="information" style="width: 28rem;">
     <div class="card-body">
       <h5 class="card-title">{{advertisement.place}}</h5>
+      <p> Full Address: {{advertisement.address}}</p>  
+      <p>Number of bedrooms: {{advertisement.bedroom}}</p>
+      <p>Number of Bathrooms: {{advertisement.bathroom}}</p>
       <p>House/Apartment Size: {{advertisement.size}} squarefeet</p>
       <p>Rent per month: {{advertisement.rent}} taka</p>
-      <a href='{% url 'advertisement_details' advertisement.id  %}' class="card-link">Full Details</a>
+      <p>Owner Name: {{advertisement.owner}}</p>
+      <p>Advertisement Posted on: {{advertisement.date_posted}}</p>
+      
     </div><br>
   </div>
 
-
+{% endif %}
 
                 
                 

@@ -13,6 +13,12 @@ def HomePage(request):
     }
     return render (request, 'BariVara/HomePage.html',advertisement)
 
+def your_advertisements(request):
+    advertisement={
+        'advertisements': advertisements.objects.all()
+    }
+    return render (request, 'BariVara/your_advertisements.html',advertisement)
+
 class AdvertisementDetailsView(DetailView):
     model=advertisements
     template_name= 'BariVara/advertisement_details.html'
