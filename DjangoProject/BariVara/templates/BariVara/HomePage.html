@@ -4,28 +4,83 @@
 {% block content %}
   {% if messages %}
     {% for message in messages %}
-      <div class=" alert-alert-{{message.tags}}">
+      <div class=" alert-alert-{{message.tags}}"></div>
         {{ message }}
     {% endfor %}
 {% endif %}
-
-  <div class="col">
     <style>
-      #information{
-        margin-top: 1.5%;
-        margin-left: 35%;
-        
+      .card{
+        background-color: #2C3E50;
+        color: white;
+        border: 2px solid black;
+        margin: 2%;
       }
     </style>
+<div class="container">
+  <div class="row">
 {% for advertisement in advertisements %}
+    <div class="col-sm">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{advertisement.place}}</h5>
+          <p>House/Apartment Size: {{advertisement.size}} squarefeet</p>
+          <p>Time Posted: {{advertisement.date_posted}}</p>
+          <p>Rent per month: {{advertisement.rent}} taka</p>
+          <a href='{% url 'advertisement_details' advertisement.id  %}' class="card-link">Full Details</a>
+          
+        </div>
+      </div>
+    </div>
 
+
+                
+                
+{% endfor %}
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+{% for advertisement in advertisements %}
+<div class="col-6">
   <div class="card" id="information" style="width: 28rem;">
     <div class="card-body">
       <h5 class="card-title">{{advertisement.place}}</h5>
       <p>House/Apartment Size: {{advertisement.size}} squarefeet</p>
       <p>Rent per month: {{advertisement.rent}} taka</p>
       <a href='{% url 'advertisement_details' advertisement.id  %}' class="card-link">Full Details</a>
-    </div><br>
+    </div>
   </div>
 
 
@@ -34,4 +89,5 @@
                 
 {% endfor %}
   </div>
+-->
 {% endblock content %}

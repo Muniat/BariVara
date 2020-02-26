@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 # Create your models here.
 
@@ -15,5 +16,10 @@ class advertisements(models.Model):
     owner= models.ForeignKey(User,on_delete=models.CASCADE)
     slug=models.SlugField()
     #images and google location will be added later
+
+    def get_absolute_url(self):
+        return reverse('advertisement_details', kwargs={'pk':self.pk})
+
+
 
 

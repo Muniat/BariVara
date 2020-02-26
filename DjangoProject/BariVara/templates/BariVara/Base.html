@@ -1,17 +1,21 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Welcome to BariVara</title>
+    {% load static %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">  
-    <title>BariVara</title>
-    {% load static %}
 </head>
 <style>
-        nav{
+    body{
+        background-color: #2C3E50;
+    }
+    nav{
         width: 100%;
+        
         }
         nav img{
             width: 6%;
@@ -39,105 +43,71 @@
             margin-right: 6%;
         }
 
-        @media(max-width: 1062px){
-            nav form {
-                margin-left:50%;
-            }
+        .carousel-item img{
+            height: 650px;
+            filter: brightness(50%);
         }
         
-        
-        
-        .load {
-            animation: slide 2s;
-        }
-        .slider{
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-            width: 100%;
-            height: auto;
-            animation: slide 20s infinite;
-        }
-        .content {
-            color:white;
-            height: 100%;
-            width: 100%;
-            background-color: rgba(0,0,0,0.3);
-        }
-        
-        @keyframes slide {
-            0%{
-                background-image: url("{% static 'BariVara/City1.jpg' %}");
-            }
-            20%{
-                background-image: url("{% static 'BariVara/City2.jpg' %}");
-            }
-            40%{
-                background-image: url("{% static 'BariVara/City3.jpg' %}");
-            }
-            60%{
-                background-image: url("{% static 'BariVara/City4.jpg' %}");
-            }
-            80%{
-                background-image: url("{% static 'BariVara/City5.jpg' %}");
-            }
-            100%{
-                background-image: url("{% static 'BariVara/City1.jpg' %}");
-            }
-        }
-        .card{
-
-            margin-bottom: 0px;
-            width: 100%;
-            height: 10%;
-            background-color: #2C3E50;
-            bottom: 0;
-        }
-        .card img{
-            background-color:#2C3E50;
-            border: none;
-        }
-
-        
-    
 </style>
 <body>
-    <div class="slider">
-        <div class="load">
+    <nav class="navbar navbar-transparent fixed-top" >
+        <img src="{% static 'BariVara/Logo.png' %}">
+
+        <ul>
+            <li> <a href='{% url 'HomePage' %}'> Home </a></li>
+            <li> <a href='{% url 'create_advertisements' %}'> Create Advertisement </a></li>
+            <li> <a href='{% url 'your_advertisements' %}'> Your Advertisements </a></li>
+            <li> <a href='{% url 'profile' %}'> Profile </a></li>
+            
+            <li> <a href="#"> About</a></li>
+            <li> <a href='{% url 'logout' %}'> Log Out </a></li>
+        </ul>
+        
+         <form class="form-inline">
+         <input class="form-control mr-sm-2" type="search" placeholder="Search"  aria-label="Search">
+         <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i><a>Search</a></button>
+        </form>
+    </nav>     
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img class="d-block w-100 " src="{% static 'BariVara/City1.jpg' %}" alt="First slide">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100 " src="{% static 'BariVara/City2.jpg' %}" alt="Second slide">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100 " src="{% static 'BariVara/City3.jpg' %}" alt="Third slide">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100 " src="{% static 'BariVara/City4.jpg' %}" alt="Third slide">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100 " src="{% static 'BariVara/City5.jpg' %}" alt="Third slide">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100 " src="{% static 'BariVara/City0.jpg' %}" alt="Third slide">
+          </div>
+          
         </div>
-        <div class="content">
-            <div class="principal">
-            <div id="main">
-                <nav class="navbar navbar-light" style="background-color: #2C3E50">
-                    <img src="{% static 'BariVara/Logo.png' %}">
-
-                    <ul>
-                        <li> <a href='{% url 'HomePage' %}'> Home </a></li>
-                        <li> <a href='{% url 'create_advertisements' %}'> Create Advertisement </a></li>
-                        <li> <a href='{% url 'your_advertisements' %}'> Your Advertisements </a></li>
-                        <li> <a href='{% url 'profile' %}'> Profile </a></li>
-                        
-                        <li> <a href="#"> About</a></li>
-                        <li> <a href='{% url 'logout' %}'> Log Out </a></li>
-                    </ul>
-                    
-                     <form class="form-inline">
-                     <input class="form-control mr-sm-2" type="search" placeholder="Search"  aria-label="Search">
-                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i><a>Search</a></button>
-                    </form>
-                    
-
-                    
-                    
-                </nav>
-                {% block content %}
+      </div>
+      {% block content %}
 
                 
-                {% endblock content %}
-                </div>
-            </div>
-        </div>
-    </div>
+      {% endblock content %}
     
+
+
+
+
+
+
+
+
+
+
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>

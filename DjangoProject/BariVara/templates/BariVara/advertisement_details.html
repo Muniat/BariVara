@@ -4,8 +4,9 @@
 {% block content %}
   <style>
       .container{
-          margin-top: 3%;
+          margin-top: 2%;
           border: 5px solid black;
+          color: white;
       }
       .p{
           font-size: medium;
@@ -22,6 +23,10 @@
          <legend class="border-bottom mb-4"><h3>Owner Information</h3></legend>
          <p>Owner Name: {{object.owner}}</p>
          <p>Advertisement Posted on: {{object.date_posted}}</p>
+         {% if object.owner == user %}
+        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'advertisement_update' object.id%}">Update</a>
+        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'advertisement_delete' object.id%}">Delete</a>
+        {% endif %}
          
 
   </div>
