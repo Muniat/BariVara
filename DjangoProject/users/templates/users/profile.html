@@ -9,13 +9,12 @@
     {% endfor %}
   {% endif %}
   <style>
-	  #profile{
-		  margin-top: 1%;
-		  top: 50%;
-		  left: 80%; 
+	  .jumbotron{
+		  background-color: #2C3E50;
+		  color:white;
 	  }
   </style>
-<div class="card" id="profile" style="width: 18rem;">
+<!--<div class="card" id="profile" style="width: 18rem;">
 	<img class="img-responsive img-rounded" src="{{ user.profile.image.url }}" alt="Default photo">
 	<div class="card-body">
 		<h2 class="account-heading">{{ user.username }}</h2>
@@ -29,6 +28,26 @@
 			</fieldset>
 			<div class="form-group">
 				<button class="btn btn-oultline-info" type="submit"> Update </button>
+			</div>
+		</form>
+	</div>
+  </div>-->
+
+  <div class="jumbotron">
+	<div class="container">
+		<img src="{{ user.profile.image.url }}" alt="..." class="img-thumbnail">
+		
+		<h2 class="account-heading">{{ user.username }}</h2>
+		<p class="text-secondary">{{ user.email }}</p>
+		<form method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			<fieldset class="form-group">
+				<legend class="border-bottom mb-4"><h1>Profile Info</h1></legend>
+				{{ update_form|crispy }}
+				{{ profile_form|crispy }}
+			</fieldset>
+			<div class="form-group">
+				<button class="btn btn-secondary" type="submit"> Update </button>
 			</div>
 		</form>
 	</div>

@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'BariVara','users',
+    'BariVara','users.apps.UsersConfig',
     'crispy_forms',
 ]
 

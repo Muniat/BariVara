@@ -8,37 +8,60 @@
         {{ message }}
     {% endfor %}
 {% endif %}
+<style>
+   .container{
+     border: 2px solid black;
+     margin-top: 1.5%;
+   }
+   .container h1{
+     color: white;
+   }
+   .container .card{
+     margin-top: 15%;
+     background-color: #2C3E50;
+     color: white;
+     border: 2px solid black;
+   }
+</style>
+<div class="container">
+  <h1 class="text-center"> Your Advertisements</h1>
 
-  <div class="col">
-    <style>
-      #information{
-        margin-top: 1.5%;
-        margin-left: 35%;
-        
-      }
-    </style>
 {% for advertisement in advertisements %}
 {% if advertisement.owner == user %}
-  <div class="card" id="information" style="width: 28rem;">
-    <div class="card-body">
-      <h5 class="card-title">{{advertisement.place}}</h5>
-      <p>Advertisement Posted on: {{advertisement.date_posted}}</p>
-      <hr class="my-4">
-      <p> Full Address: {{advertisement.address}}</p>  
-      <p>Number of bedrooms: {{advertisement.bedroom}}</p>
-      <p>Number of Bathrooms: {{advertisement.bathroom}}</p>
-      <p>House/Apartment Size: {{advertisement.size}} squarefeet</p>
-      <p>Rent per month: {{advertisement.rent}} taka</p>
-      <p>Owner Name: {{advertisement.owner}}</p>
-      
-      
-    </div><br>
-  </div>
+
+  <div class="col-3">
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">{{advertisement.place}}</h5>
+        <p>House/Apartment Size: {{advertisement.size}} squarefeet</p>
+        <p>Time Posted: {{advertisement.date_posted}}</p>
+        <p>Rent per month: {{advertisement.rent}} taka</p>
+        <a href='{% url 'advertisement_details' advertisement.id  %}' class="card-link">Full Details</a>
+        
+      </div>
+    </div>
+  </div> 
+</div>
 
 {% endif %}
 
                 
                 
 {% endfor %}
-  </div>
+  
 {% endblock content %}
+
+<div class="container">
+  <div class="col-3">
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">{{advertisement.place}}</h5>
+        <p>House/Apartment Size: {{advertisement.size}} squarefeet</p>
+        <p>Time Posted: {{advertisement.date_posted}}</p>
+        <p>Rent per month: {{advertisement.rent}} taka</p>
+        <a href='{% url 'advertisement_details' advertisement.id  %}' class="card-link">Full Details</a>
+        
+      </div>
+    </div>
+  </div> 
+</div>

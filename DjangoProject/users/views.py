@@ -24,7 +24,7 @@ def profile(request):
     if request.method=='POST':
         #data = Profile.objects.filter(user=request.user)
         update_form=UserUpdateForm(request.POST, instance=request.user)
-        profile_form=ProfileUpdateForm(request.POST, request.FILES ,instance=request.user)
+        profile_form=ProfileUpdateForm(request.POST, request.FILES ,instance=request.user.profile)
         if update_form .is_valid() and profile_form.is_valid():
             update_form.save()
             profile_form.save()

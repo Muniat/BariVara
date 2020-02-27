@@ -13,14 +13,14 @@
       }
   </style>
 <div class="container">
-         <legend class="border-bottom mb-4"><h3>House Information</h3></legend> 
+         <legend class="border-bottom mb-4 text-center"><h3>House Information</h3></legend> 
          <h5 class="card-title">Location: {{object.place}} </h5>     
          <p> Full Address: {{object.address}}</p>  
          <p>Number of bedrooms: {{object.bedroom}}</p>
          <p>Number of Bathrooms: {{object.bathroom}}</p>
          <p>House/Apartment Size: {{object.size}} squarefeet</p>
          <p>Rent per month: {{object.rent}} taka</p>
-         <legend class="border-bottom mb-4"><h3>Owner Information</h3></legend>
+         <legend class="border-bottom mb-4 text-center"><h3>Owner Information</h3></legend>
          <p>Owner Name: {{object.owner}}</p>
          <p>Advertisement Posted on: {{object.date_posted}}</p>
          {% if object.owner == user %}
