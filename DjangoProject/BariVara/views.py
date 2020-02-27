@@ -33,7 +33,7 @@ class AdvertisementDetailsView(DetailView):
 
 class AdvertisementCreateView(LoginRequiredMixin, CreateView):
     model= advertisements
-    fields=['place','address','bedroom','bathroom','rent','size']
+    fields=['image', 'place','address','bedroom','bathroom','rent','size']
 
     def form_valid(self, form):
         form.instance.owner=self.request.user

@@ -14,7 +14,8 @@
   </style>
 <div class="container">
          <legend class="border-bottom mb-4 text-center"><h3>House Information</h3></legend> 
-         <h5 class="card-title">Location: {{object.place}} </h5>     
+         <h5 class="card-title">Location: {{object.place}} </h5> 
+         <img src="{{ object.image.url }}" alt="..." class="img-thumbnail">    
          <p> Full Address: {{object.address}}</p>  
          <p>Number of bedrooms: {{object.bedroom}}</p>
          <p>Number of Bathrooms: {{object.bathroom}}</p>

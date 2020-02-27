@@ -7,6 +7,8 @@ AdvertisementCreateView,
 AdvertisementUpdateView,
 AdvertisementDeleteView)
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     
@@ -17,3 +19,6 @@ urlpatterns = [
     path('advertisements/<int:pk>/update',AdvertisementUpdateView.as_view() , name='advertisement_update'),
     path('advertisements/<int:pk>/delete',AdvertisementDeleteView.as_view() , name='advertisement_delete'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

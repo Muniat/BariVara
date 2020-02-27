@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
+from PIL import Image
 
 # Create your models here.
 
@@ -14,11 +15,19 @@ class advertisements(models.Model):
     size=models.PositiveIntegerField()
     date_posted=models.DateTimeField(default=timezone.now)
     owner= models.ForeignKey(User,on_delete=models.CASCADE)
+    image = models.ImageField(default='defaulthouse.jpg',upload_to='house_pics')
+
+
     slug=models.SlugField()
-    #images and google location will be added later
+    # google location will be added later
 
     def get_absolute_url(self):
         return reverse('advertisement_details', kwargs={'pk':self.pk})
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        image=Image.open(self.image.path)
 
 
 
