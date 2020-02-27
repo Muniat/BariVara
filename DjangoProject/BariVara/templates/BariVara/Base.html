@@ -11,11 +11,12 @@
 </head>
 <style>
     body{
-        background-color: #2C3E50;
+      background-color: #2C3E50;
+      background:linear-gradient(rgba(0,0,0,.3),rgba(0,0,0,.3)),url('/BariVara/static/BariVara/City0.jpg') no-repeat;
     }
     nav{
         width: 100%;
-        
+        background-color: #2C3E50;
         }
         nav img{
             width: 6%;
@@ -44,6 +45,7 @@
         }
 
         .carousel-item img{
+
             height: 450px;
             filter: brightness(50%);
         }
@@ -67,30 +69,8 @@
          <input class="form-control mr-sm-2" type="search" placeholder="Search"  aria-label="Search">
          <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i><a>Search</a></button>
         </form>
-    </nav>     
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img class="d-block w-100 " src="{% static 'BariVara/City1.jpg' %}" alt="First slide">
-          </div>
-          <div class="carousel-item">
-            <img class="d-block w-100 " src="{% static 'BariVara/City2.jpg' %}" alt="Second slide">
-          </div>
-          <div class="carousel-item">
-            <img class="d-block w-100 " src="{% static 'BariVara/City3.jpg' %}" alt="Third slide">
-          </div>
-          <div class="carousel-item">
-            <img class="d-block w-100 " src="{% static 'BariVara/City4.jpg' %}" alt="Third slide">
-          </div>
-          <div class="carousel-item">
-            <img class="d-block w-100 " src="{% static 'BariVara/City5.jpg' %}" alt="Third slide">
-          </div>
-          <div class="carousel-item">
-            <img class="d-block w-100 " src="{% static 'BariVara/City0.jpg' %}" alt="Third slide">
-          </div>
-          
-        </div>
-      </div>
+    </nav>
+    
       {% block content %}
 
                 

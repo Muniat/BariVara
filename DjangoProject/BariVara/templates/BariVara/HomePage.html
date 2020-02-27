@@ -16,11 +16,12 @@
         margin: 2%;
       }
     </style>
+
 <div class="container">
   <div class="row">
 {% for advertisement in advertisements %}
     <div class="col-sm">
-      <div class="card" style="width: 18rem;">
+      <div class="card" style="width: 16rem;">
         <div class="card-body">
           <h5 class="card-title">{{advertisement.place}}</h5>
           <p>House/Apartment Size: {{advertisement.size}} squarefeet</p>
@@ -39,6 +40,9 @@
 
   </div>
 </div>
+
+
+
 
 
 
