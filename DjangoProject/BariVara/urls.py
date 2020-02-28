@@ -18,6 +18,7 @@ urlpatterns = [
     path('your_advertisements',views.your_advertisements, name='your_advertisements'),
     path('advertisements/<int:pk>/update',AdvertisementUpdateView.as_view() , name='advertisement_update'),
     path('advertisements/<int:pk>/delete',AdvertisementDeleteView.as_view() , name='advertisement_delete'),
+    path('search', views.Search, name='search')
 ]
 
 if settings.DEBUG:

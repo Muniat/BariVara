@@ -66,11 +66,15 @@
             <li> <a href='{% url 'logout' %}'> Log Out </a></li>
         </ul>
         
-         <form class="form-inline">
-         <input class="form-control mr-sm-2" type="search" placeholder="Search"  aria-label="Search">
+         <form method="get" action="/BariVara/search" class="form-inline">
+         <input class="form-control mr-sm-2" type="search" placeholder="Search"  aria-label="Search" name="query" id="query">
          <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i><a>Search</a></button>
         </form>
     </nav>
+   <!-- <script type="text/javascript">
+        document.getElementById("id_q").value="{{ query }}"
+    </script> -->
+
     
       
       {% if messages %}
@@ -111,6 +115,21 @@
   
     </div>
   </div>
+ 
+
+   <!--<div class="container">
+     <div class="row">
+       <div class="card m-auto">
+        <div class="card-body mt-2 mb-2">
+          <h2 class="card-title">No Results.</h2>
+          <p class="card-text">Your search for "{{ query }}" did not match for any advertisement. </p>
+        </div>
+
+   </div>
+ </div>
+</div> -->
+
+
   
   <!--
   {% for advertisement in advertisements %}

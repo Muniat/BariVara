@@ -12,13 +12,29 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
+from django.db.models import Q
 # Create your views here.
 
 def HomePage(request):
-    advertisement={
-        'advertisements': advertisements.objects.all()  
+
+    
+
+    advertisements = advertisements.object.all()
+    
+    
+    context={
+        'advertisements': advertisements,
     }
-    return render (request, 'BariVara/HomePage.html',advertisement)
+
+    return render (request, 'BariVara/HomePage.html',context)
+
+def Search(request):
+
+    query = request.GET['query']
+    posts = advertisements.objects.filter(place__icontains=query)
+    params = {'advertisements':posts}
+    
+    return render(request, 'BariVara/search.html', params)
 
 
 def your_advertisements(request):
@@ -69,3 +85,7 @@ class AdvertisementListView(ListView):
     template_name = 'BariVara/Homepage.html'
     context_object_name = 'advertisements'
     ordering = ['-date_posted']
+
+
+
+    
