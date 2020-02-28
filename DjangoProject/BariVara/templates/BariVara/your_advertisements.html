@@ -16,7 +16,7 @@
    .container h1{
      color: white;
    }
-   .container .card{
+    .card{
      margin-top: 15%;
      background-color: #2C3E50;
      color: white;
@@ -25,43 +25,30 @@
 </style>
 <div class="container">
   <h1 class="text-center"> Your Advertisements</h1>
-
+  <div class=row>
 {% for advertisement in advertisements %}
 {% if advertisement.owner == user %}
 
-  <div class="col-3">
-    <div class="card" style="width: 16rem;">
-      <div class="card-body">
-        <h5 class="card-title">{{advertisement.place}}</h5>
-        <p>House/Apartment Size: {{advertisement.size}} squarefeet</p>
-        <p>Time Posted: {{advertisement.date_posted}}</p>
-        <p>Rent per month: {{advertisement.rent}} taka</p>
-        <a href='{% url 'advertisement_details' advertisement.id  %}' class="card-link">Full Details</a>
-        
+  
+    <div class="col-sm-4">
+      <div class="card" style="width: 16rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{advertisement.place}}</h5>
+          <p>House/Apartment Size: {{advertisement.size}} squarefeet</p>
+          <p>Time Posted: {{advertisement.date_posted}}</p>
+          <p>Rent per month: {{advertisement.rent}} taka</p>
+          <a href='{% url 'advertisement_details' advertisement.id  %}' class="card-link">Full Details</a>
+        </div>
       </div>
     </div>
-  </div> 
-</div>
+
 
 {% endif %}
 
                 
                 
 {% endfor %}
-  
+  </div> 
+</div>  
 {% endblock content %}
 
-<div class="container">
-  <div class="col-3">
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <h5 class="card-title">{{advertisement.place}}</h5>
-        <p>House/Apartment Size: {{advertisement.size}} squarefeet</p>
-        <p>Time Posted: {{advertisement.date_posted}}</p>
-        <p>Rent per month: {{advertisement.rent}} taka</p>
-        <a href='{% url 'advertisement_details' advertisement.id  %}' class="card-link">Full Details</a>
-        
-      </div>
-    </div>
-  </div> 
-</div>
