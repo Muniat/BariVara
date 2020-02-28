@@ -11,6 +11,7 @@ from .import forms
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.urls import reverse_lazy
 # Create your views here.
 
 def HomePage(request):
@@ -55,7 +56,7 @@ class AdvertisementUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView)
 
 class AdvertisementDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
     model= advertisements
-    success_url='BariVara/' #Need to fix here
+    success_url = reverse_lazy('your_advertisements') #Need to fix here
     def test_func(self):
         advertisements= self.get_object()
         if self.request.user == advertisements.owner:

@@ -1,34 +1,125 @@
-{% extends "BariVara/Base.html"%}
 
 
-{% block content %}
-  <style>
-      .container{
-          margin-top: 2%;
-          border: 5px solid black;
-          color: white;
-      }
-      .p{
-          font-size: medium;
-      }
-  </style>
-<div class="container">
-         <legend class="border-bottom mb-4 text-center"><h3>House Information</h3></legend> 
-         <h5 class="card-title">Location: {{object.place}} </h5> 
-         <img src="{{ object.image.url }}" alt="..." class="img-thumbnail">    
-         <p> Full Address: {{object.address}}</p>  
-         <p>Number of bedrooms: {{object.bedroom}}</p>
-         <p>Number of Bathrooms: {{object.bathroom}}</p>
-         <p>House/Apartment Size: {{object.size}} squarefeet</p>
-         <p>Rent per month: {{object.rent}} taka</p>
-         <legend class="border-bottom mb-4 text-center"><h3>Owner Information</h3></legend>
-         <p>Owner Name: {{object.owner}}</p>
-         <p>Advertisement Posted on: {{object.date_posted}}</p>
-         {% if object.owner == user %}
-        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'advertisement_update' object.id%}">Update</a>
-        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'advertisement_delete' object.id%}">Delete</a>
-        {% endif %}
-         
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to BariVara</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">  
+</head>
+<style>
+    body{
+      background-color:    #34495e  ;
+      
+    }
+    nav{
+        width: 100%;
+        background-color: #2C3E50;
+        }
+        nav img{
+            width: 6%;
+            height: auto;
+            margin-left: 10%;
+        }
+        nav ul li {
+            list-style-type: none;
+            display: inline-block;
+            
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            padding-right: 15px;
+            display: inline-block;
+            border: none;
+        }
+        nav ul li a:hover {
+            background-color: #34495E;
+            color:black;
+        }
 
-  </div>
-{% endblock content %}
+        nav form button i{
+            margin-right: 6%;
+        }
+
+        .carousel-item img{
+
+            height: 450px;
+            filter: brightness(50%);
+        }
+        
+</style>
+<body>
+    <nav class="navbar navbar-transparent " >
+        <img src="{% static 'BariVara/Logo.png' %}">
+
+        <ul>
+            <li> <a href='{% url 'HomePage' %}'> Home </a></li>
+            <li> <a href='{% url 'create_advertisements' %}'> Create Advertisement </a></li>
+            <li> <a href='{% url 'your_advertisements' %}'> Your Advertisements </a></li>
+            <li> <a href='{% url 'profile' %}'> Profile </a></li>
+            
+            <li> <a href="#"> About</a></li>
+            <li> <a href='{% url 'logout' %}'> Log Out </a></li>
+        </ul>
+        
+         <form class="form-inline">
+         <input class="form-control mr-sm-2" type="search" placeholder="Search"  aria-label="Search">
+         <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i><a>Search</a></button>
+        </form>
+    </nav>
+    
+    
+      <style>
+        .container{
+            margin-top: 2%;
+            border: 5px solid black;
+            color:white;
+        }
+        .p{
+            font-size: medium;
+        }
+    </style>
+  <div class="container">
+           <legend class="border-bottom mb-4 text-center"><h3>House Information</h3></legend> 
+           <h5 class="card-title">Location: {{object.place}} </h5> 
+           <img src="{{ object.image.url }}" alt="..." class="img-thumbnail">    
+           <p> Full Address: {{object.address}}</p>  
+           <p>Number of bedrooms: {{object.bedroom}}</p>
+           <p>Number of Bathrooms: {{object.bathroom}}</p>
+           <p>House/Apartment Size: {{object.size}} squarefeet</p>
+           <p>Rent per month: {{object.rent}} taka</p>
+           <legend class="border-bottom mb-4 text-center"><h3>Owner Information</h3></legend>
+           <p>Owner Name: {{object.owner}}</p>
+           <p>Advertisement Posted on: {{object.date_posted}}</p>
+           {% if object.owner == user %}
+          <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'advertisement_update' object.id%}">Update</a>
+          <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'advertisement_delete' object.id%}">Delete</a>
+          {% endif %}
+           
+  
+    </div>
+                
+      
+    
+
+
+
+
+
+
+
+
+
+
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+

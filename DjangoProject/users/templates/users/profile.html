@@ -1,77 +1,171 @@
-{% extends "BariVara/base.html" %}
+
 {% load crispy_forms_tags %}
-{% block content %}
-{% if messages %}
-    {% for message in messages %}
-      <div class=" alert-alert-{{message.tags}}">
-        {{ message }}
-      </div>
-    {% endfor %}
-  {% endif %}
-  <style>
-	  .jumbotron{
-		  background-color: #2C3E50;
-		  color:white;
-	  }
-  </style>
-<!--<div class="card" id="profile" style="width: 18rem;">
-	<img class="img-responsive img-rounded" src="{{ user.profile.image.url }}" alt="Default photo">
-	<div class="card-body">
-		<h2 class="account-heading">{{ user.username }}</h2>
-		<p class="text-secondary">{{ user.email }}</p>
-		<form method="POST" enctype="multipart/form-data">
-			{% csrf_token %}
-			<fieldset class="form-group">
-				<legend class="border-bottom mb-4"><h1>Profile Info</h1></legend>
-				{{ update_form|crispy }}
-				{{ profile_form|crispy }}
-			</fieldset>
-			<div class="form-group">
-				<button class="btn btn-oultline-info" type="submit"> Update </button>
-			</div>
-		</form>
-	</div>
-  </div>-->
 
-  <div class="jumbotron">
-	<div class="container">
-		<img src="{{ user.profile.image.url }}" alt="..." class="img-thumbnail">
-		
-		<h2 class="account-heading">{{ user.username }}</h2>
-		<p class="text-secondary">{{ user.email }}</p>
-		<form method="POST" enctype="multipart/form-data">
-			{% csrf_token %}
-			<fieldset class="form-group">
-				<legend class="border-bottom mb-4"><h1>Profile Info</h1></legend>
-				{{ update_form|crispy }}
-				{{ profile_form|crispy }}
-			</fieldset>
-			<div class="form-group">
-				<button class="btn btn-secondary" type="submit"> Update </button>
-			</div>
-		</form>
-	</div>
-  </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to BariVara</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">  
+</head>
+<style>
+    body{
+      background-color: #2C3E50;
+      background:linear-gradient(rgba(0,0,0,.3),rgba(0,0,0,.3)),url('/BariVara/static/BariVara/City3.jpg') no-repeat;
+    }
+    nav{
+        width: 100%;
+        background-color: #2C3E50;
+        }
+        nav img{
+            width: 6%;
+            height: auto;
+            margin-left: 10%;
+        }
+        nav ul li {
+            list-style-type: none;
+            display: inline-block;
+            
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            padding-right: 15px;
+            display: inline-block;
+            border: none;
+        }
+        nav ul li a:hover {
+            background-color: #34495E;
+            color:black;
+        }
 
-  <!--<div class="content-section">
-  	<div class="media">
-  		<img class="rounded-circle account img" src="{{ user.profile.image.url }}">
-  		<div class="media-body">
-  			<h2 class="account-heading">{{ user.username }}</h2>
-  			<p class="text-secondary">{{ user.email }}</p>
-  		</div>
-	  </div>
-	  <form method="POST" enctype="multipart/form-data">
-		{% csrf_token %}
-		<fieldset class="form-group">
-			<legend class="border-bottom mb-4"><h1>Profile Info</h1></legend>
-			{{ update_form|crispy }}
-			{{ profile_form|crispy }}
-		</fieldset>
-		<div class="form-group">
-			<button class="btn btn-oultline-info" type="submit"> Update </button>
+        nav form button i{
+            margin-right: 6%;
+        }
+
+        .carousel-item img{
+
+            height: 450px;
+            filter: brightness(50%);
+        }
+        
+</style>
+<body>
+    <nav class="navbar navbar-transparent " >
+        <img src="{% static 'BariVara/Logo.png' %}">
+
+        <ul>
+            <li> <a href='{% url 'HomePage' %}'> Home </a></li>
+            <li> <a href='{% url 'create_advertisements' %}'> Create Advertisement </a></li>
+            <li> <a href='{% url 'your_advertisements' %}'> Your Advertisements </a></li>
+            <li> <a href='{% url 'profile' %}'> Profile </a></li>
+            
+            <li> <a href="#"> About</a></li>
+            <li> <a href='{% url 'logout' %}'> Log Out </a></li>
+        </ul>
+        
+         <form class="form-inline">
+         <input class="form-control mr-sm-2" type="search" placeholder="Search"  aria-label="Search">
+         <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i><a>Search</a></button>
+        </form>
+    </nav>
+    
+      
+	  {% if messages %}
+	  {% for message in messages %}
+		<div class=" alert-alert-{{message.tags}}">
+		  {{ message }}
 		</div>
-	</form>
-  </div>-->
-{% endblock %}
-<script>document.querySelector(".custom-file-label").className += " mt-5"</script>
+	  {% endfor %}
+	{% endif %}
+	<style>
+		.jumbotron{
+			background-color:transparent;
+			color:white;
+			
+			
+		}
+	</style>
+  <!--<div class="card" id="profile" style="width: 18rem;">
+	  <img class="img-responsive img-rounded" src="{{ user.profile.image.url }}" alt="Default photo">
+	  <div class="card-body">
+		  <h2 class="account-heading">{{ user.username }}</h2>
+		  <p class="text-secondary">{{ user.email }}</p>
+		  <form method="POST" enctype="multipart/form-data">
+			  {% csrf_token %}
+			  <fieldset class="form-group">
+				  <legend class="border-bottom mb-4"><h1>Profile Info</h1></legend>
+				  {{ update_form|crispy }}
+				  {{ profile_form|crispy }}
+			  </fieldset>
+			  <div class="form-group">
+				  <button class="btn btn-oultline-info" type="submit"> Update </button>
+			  </div>
+		  </form>
+	  </div>
+	</div>-->
+  
+	<div class="jumbotron">
+	  <div class="container">
+		  <img src="{{ user.profile.image.url }}" alt="..." class="img-thumbnail">
+		  
+		  <h2 class="account-heading">{{ user.username }}</h2>
+		  <p class="text-secondary">{{ user.email }}</p>
+		  <form method="POST" enctype="multipart/form-data">
+			  {% csrf_token %}
+			  <fieldset class="form-group">
+				  <legend class="border-bottom mb-4"><h1>Profile Info</h1></legend>
+				  {{ update_form|crispy }}
+				  {{ profile_form|crispy }}
+			  </fieldset>
+			  <div class="form-group">
+				  <button class="btn btn-secondary" type="submit"> Update </button>
+			  </div>
+		  </form>
+	  </div>
+	</div>
+  
+	<!--<div class="content-section">
+		<div class="media">
+			<img class="rounded-circle account img" src="{{ user.profile.image.url }}">
+			<div class="media-body">
+				<h2 class="account-heading">{{ user.username }}</h2>
+				<p class="text-secondary">{{ user.email }}</p>
+			</div>
+		</div>
+		<form method="POST" enctype="multipart/form-data">
+		  {% csrf_token %}
+		  <fieldset class="form-group">
+			  <legend class="border-bottom mb-4"><h1>Profile Info</h1></legend>
+			  {{ update_form|crispy }}
+			  {{ profile_form|crispy }}
+		  </fieldset>
+		  <div class="form-group">
+			  <button class="btn btn-oultline-info" type="submit"> Update </button>
+		  </div>
+	  </form>
+	</div>-->
+  
+  <script>document.querySelector(".custom-file-label").className += " mt-5"</script>
+                
+      
+    
+
+
+
+
+
+
+
+
+
+
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
+
