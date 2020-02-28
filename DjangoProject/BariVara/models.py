@@ -15,10 +15,11 @@ class advertisements(models.Model):
     size=models.PositiveIntegerField()
     date_posted=models.DateTimeField(default=timezone.now)
     owner= models.ForeignKey(User,on_delete=models.CASCADE)
-    image = models.ImageField(default='defaulthouse.jpg',upload_to='house_pics')
+    number=models.PositiveIntegerField(null=True)
+    image = models.ImageField(default='defaulthouse.jpg',upload_to='house_pics/')
 
 
-    slug=models.SlugField()
+    
     # google location will be added later
 
     def get_absolute_url(self):

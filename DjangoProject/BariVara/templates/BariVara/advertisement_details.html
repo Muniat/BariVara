@@ -94,6 +94,7 @@
            <p>Rent per month: {{object.rent}} taka</p>
            <legend class="border-bottom mb-4 text-center"><h3>Owner Information</h3></legend>
            <p>Owner Name: {{object.owner}}</p>
+           <p>Contact: {{ object.numer }}</p>
            <p>Advertisement Posted on: {{object.date_posted}}</p>
            {% if object.owner == user %}
           <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'advertisement_update' object.id%}">Update</a>

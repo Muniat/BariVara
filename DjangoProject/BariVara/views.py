@@ -34,15 +34,16 @@ class AdvertisementDetailsView(DetailView):
 
 class AdvertisementCreateView(LoginRequiredMixin, CreateView):
     model= advertisements
-    fields=['image', 'place','address','bedroom','bathroom','rent','size']
+    fields=['image', 'place','address','bedroom','bathroom','rent','size','number']
 
     def form_valid(self, form):
         form.instance.owner=self.request.user
+        file = self.request.FILES
         return super().form_valid(form)
 
 class AdvertisementUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
     model= advertisements
-    fields=['place','address','bedroom','bathroom','rent','size']
+    fields=['image','place','address','bedroom','bathroom','rent','size','number']
 
     def form_valid(self, form):
         form.instance.owner=self.request.user
