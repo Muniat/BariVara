@@ -73,7 +73,7 @@ class AdvertisementUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView)
 
 class AdvertisementDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
     model= advertisements
-    success_url = reverse_lazy('your_advertisements') #Need to fix here
+    success_url = reverse_lazy('your_advertisements') 
     def test_func(self):
         advertisements= self.get_object()
         if self.request.user == advertisements.owner:
