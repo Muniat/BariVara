@@ -13,7 +13,8 @@
 <style>
     body{
       background-color:  #34495e;
-      
+      background:linear-gradient(rgba(0,0,0,.3),rgba(0,0,0,.3)),url('/BariVara/static/BariVara/City4.jpg') no-repeat;
+      background-size: 100% 100%;
     }
     nav{
         width: 100%;
@@ -45,11 +46,6 @@
             margin-right: 6%;
         }
 
-        .carousel-item img{
-
-            height: 450px;
-            filter: brightness(50%);
-        }
         
 </style>
 <body>
@@ -67,7 +63,7 @@
         </ul>
         
          <form method="get" action="/BariVara/search" class="form-inline">
-         <input class="form-control mr-sm-2" type="search" placeholder="Search"  aria-label="Search" name="query" id="query">
+         <input class="form-control mr-sm-2" type="search" placeholder="Search By Area"  aria-label="Search" name="query" id="query">
          <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i><a>Search</a></button>
         </form>
     </nav>
