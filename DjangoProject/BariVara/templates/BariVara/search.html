@@ -20,7 +20,7 @@
         nav img{
             width: 6%;
             height: auto;
-            margin-left: 10%;
+            
         }
         nav ul li {
             list-style-type: none;
@@ -49,6 +49,8 @@
             filter: brightness(50%);
         }
         
+        
+
 </style>
 <body>
     <nav class="navbar navbar-transparent " >
@@ -68,6 +70,21 @@
          <input class="form-control mr-sm-2" type="search" placeholder="Search By Area"  aria-label="Search" name="query" id="query">
          <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i><a>Search</a></button>
         </form>
+        
+         <form method="get" action="/BariVara/filter" class="form-inline">
+          
+           <select id="query" name="query">
+             <option value="0">Filter by Budget</option>
+             <option value="1"> Budget < 15000 Tk</option>
+             <option value="2">15,000-20,000 Tk</option>
+             <option value="3">20,001-25,000 Tk</option>
+             <option value="4">25,001-30,000 Tk</option>
+             <option value="5">30,000+ Tk</option>
+             </select>
+           <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i><a>Search</a></button>
+          </form>
+        
+        
     </nav>
    <!-- <script type="text/javascript">
         document.getElementById("id_q").value="{{ query }}"
@@ -93,7 +110,7 @@
   <div class="container">
     <div class="row">
   {% for advertisement in advertisements %}
-      <div class="col-sm">
+      <div class="col-sm-4">
         <div class="card" style="width: 16rem;">
           <div class="card-body">
             <h5 class="card-title">{{advertisement.place}}</h5>
