@@ -1,0 +1,28 @@
+{% extends "BariVara/Base.html" %}
+
+{% block content %}
+   <style>
+       .card{
+          background-color: #2C3E50;
+          color: white;
+          border: 2px solid black;
+          margin: 2%;
+        }
+   </style>
+<div class="container">
+    
+  {% for ad in advertisements %}
+     <div class="col-sm-4">
+        <div class="card" style="width: 16rem;">
+          <div class="card-body">
+            <h5 class="card-title">{{ad.place}}</h5>
+            <p>House/Apartment Size: {{ad.size}} squarefeet</p>
+            <p>Time Posted: {{ad.date_posted}}</p>
+            <p>Rent per month: {{ad.rent}} taka</p>
+            <a href='{% url 'advertisement_details' ad.id  %}' class="card-link">Full Details</a>
+          </div>
+        </div>
+      </div>
+  {% endfor %} 
+</div> 
+{% endblock content %}

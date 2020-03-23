@@ -1,0 +1,46 @@
+{% extends "BariVara/Base.html" %}
+
+{% block content %}
+<style>
+   .container{
+      border: 3px solid black;
+      margin-top: 3%;
+      background-color: #2c3e50;
+      color: white;
+   }
+   .card{
+      width: 50%;
+      margin: 2%;
+      background-color: #2c3e50;
+      border: 2px solid black;
+   }
+</style>
+   <div class="container">
+         <legend class="border-bottom mb-4 text-center"><h3>House Information</h3></legend>
+         <p>Location: {{ advertisement.place}}</p>
+         <p>Address: {{ advertisement.address}}</p>
+         <p>Size: {{ advertisement.size}} Squarefeets</p>
+         <p>Number of Bedrooms: {{ advertisement.bedroom}}</p>
+         <p>Number of Bathrooms:{{ advertisement.bathroom}}</p>
+         <p>Rent: {{ advertisement.rent}} in Tk</p>
+         {% for p in advertisement.images_set.all %}
+         <div class="col-md -3">
+           <img src="{{ p.image.url }}" width="50%" height="auto" alt="images">
+         </div>
+         {% endfor %}
+         <legend class="border-bottom mb-4 text-center"><h3>Owner Information</h3></legend>
+         <p>Owner: {{ advertisement.owner}}</p>
+         <p>Mobile/Telphone: {{ advertisement.number}}</p>
+         
+    </div>
+    <!--<div class="row gallery">
+      {% for p in advertisement.images_set.all %}
+        <div class="col-md -3">
+           <img src="{{ p.image.url }}" width="50%" height="auto" alt="images">
+        </div>
+      {% endfor %}
+   </div>--> 
+   </div>
+</div>
+
+{% endblock content %}
