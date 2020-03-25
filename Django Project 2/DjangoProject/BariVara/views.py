@@ -57,6 +57,13 @@ def advertisement_edit(request, id):
             'advertisement': advertisement,
         }
     return render(request, 'Barivara/advertisement_edit.html', context)
+
+def advertisement_delete(request, id):
+    advertisement = get_object_or_404(advertisements, id=id)
+    if advertisement.owner != request.user:
+        raise Http404()
+    advertisement.delete()
+    return redirect('HomePage')
         
 def your_advertisements(request):
     advertisement={
