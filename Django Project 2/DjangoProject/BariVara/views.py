@@ -3,6 +3,7 @@ from .forms import advertisementForm
 from .models import advertisements,images
 from django.forms import modelformset_factory
 from django.contrib import messages
+
 def HomePage(request):
     
     context={
@@ -17,16 +18,17 @@ def create_advertisements(request):
         form=advertisementForm(request.POST)
         formset=ImageFormset(request.POST or None, request.FILES or None)
         if form.is_valid() and formset.is_valid():
-            advertisements=form.save(commit=False)
-            advertisements.owner=request.user
-            advertisements.save()
+            advertisement=form.save(commit=False)
+            advertisement.owner=request.user
+            advertisement.save()
             for f in formset:
                 try:
-                    photo=images(advertisement=advertisements,image=f.cleaned_data['image'])
+                    photo=images(advertisement=advertisement,image=f.cleaned_data['image'])
                     photo.save()
-                    return redirect('HomePage')
+                    
                 except Exception as e:
                     break
+            return redirect('HomePage')
             
     else:
         form=advertisementForm()
@@ -37,6 +39,12 @@ def create_advertisements(request):
         'formset':formset,
     }
     return render (request,'BariVara/create_advertisements.html',context)
+
+def your_advertisements(request):
+    advertisement={
+        'advertisements': advertisements.objects.all()
+    }
+    return render (request, 'BariVara/your_advertisements.html',advertisement)
 
 def advertisement_details(request,id):
     context={
@@ -81,3 +89,5 @@ def Search(request):
     posts = advertisements.objects.filter(place__icontains=query)
     params = {'advertisements':posts}
     return render(request, 'BariVara/search.html', params)
+
+

@@ -1,6 +1,6 @@
 from django.shortcuts import render , redirect
 from django.http import HttpResponse
-from .models import advertisements
+from .models import advertisements, Images
 from django.views.generic import (
     ListView, 
     DetailView, 
@@ -8,11 +8,13 @@ from django.views.generic import (
     UpdateView,
     DeleteView)
 from .import forms
+from .forms import create_advertisements
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.db.models import Q
+from django.forms import modelformset_factory
 # Create your views here.
 
 def HomePage(request):
@@ -75,16 +77,49 @@ def your_advertisements(request):
 class AdvertisementDetailsView(DetailView):
     model=advertisements
     template_name= 'BariVara/advertisement_details.html'
+#def advertisement_detail(request):
+    #advertisement = get_object_or_404(advertisements, id=id)
+    #context={
+      #'advertisement' : advertisement
+    #}
+    #return render(request, 'BariVara/advertisement_details.html', context)
 
 
-class AdvertisementCreateView(LoginRequiredMixin, CreateView):
-    model= advertisements
-    fields=['image', 'place','address','bedroom','bathroom','rent','size','number']
+#class AdvertisementCreateView(LoginRequiredMixin, CreateView):
+    #model= advertisements
+    #fields=['image','place','address','bedroom','bathroom','rent','size','number']
+def create_advertisement(request):
 
-    def form_valid(self, form):
-        form.instance.owner=self.request.user
-        file = self.request.FILES
-        return super().form_valid(form)
+    ImageFormset = modelformset_factory(Images, fields=('image',), extra=4)
+    if request.method == 'POST':
+        form = create_advertisements(request.POST)
+        formset = ImageFormset(request.POST or None, request.FILES or None)
+        if form.is_valid() and formset.is_valid():
+            advertisement = form.save(commit=False)
+            advertisement.owner = request.user
+            advertisement.save()
+
+            for f in formset:
+                try:
+                    photo = Images(image=f.cleaned_data['image'])
+                    photo.save()
+
+                except Exception as e:
+                    break
+    else:
+        form = create_advertisements()
+        formset = ImageFormset(queryset=advertisements.objects.none())
+    context = {
+        'form': form,
+        'formset': formset,
+    }
+    return render(request, 'BariVara/create_advertisements.html', context)
+
+
+
+    #def form_valid(self, form):
+        #form.instance.owner=self.request.user
+        #return super().form_valid(form)
 
 class AdvertisementUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
     model= advertisements

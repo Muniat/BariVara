@@ -16,7 +16,7 @@ class advertisements(models.Model):
     date_posted=models.DateTimeField(default=timezone.now)
     owner= models.ForeignKey(User,on_delete=models.CASCADE)
     number=models.PositiveIntegerField(null=True)
-    image = models.ImageField(default='defaulthouse.jpg',upload_to='house_pics/')
+    #image = models.ImageField(default='defaulthouse.jpg',upload_to='house_pics/')
 
 
     
@@ -28,8 +28,13 @@ class advertisements(models.Model):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 
-        image=Image.open(self.image.path)
+        #image=Image.open(self.image.path)
 
 
+class Images(models.Model):
+    advertisement = models.ForeignKey(advertisements,on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='house_pics/',blank=True,null=True)
+    def __str__(self):
+        return self.advertisement.place + 'Image'
 
 

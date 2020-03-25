@@ -42,5 +42,8 @@ class images(models.Model):
     advertisement=models.ForeignKey(advertisements,on_delete=models.CASCADE)
     image=models.ImageField(upload_to='house_pics/',blank=True, null=True)
 
+    def __str__(self):
+        return self.advertisements.place + "Image"
+
     
     

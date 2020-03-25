@@ -50,6 +50,16 @@
             height: 450px;
             filter: brightness(50%);
         }
+
+        .gallery{
+          margin-top: 20px;
+          margin-bottom: 20px;
+        }
+        .gallery .img-thumbnail{
+          height: 250px;
+          width: 300px;
+
+        }
         
 </style>
 <body>
@@ -100,7 +110,14 @@
   <div class="container">
            <legend class="border-bottom mb-4 text-center"><h3>House Information</h3></legend> 
            <h5 class="card-title">Location: {{object.place}} </h5> 
-           <img src="{{ object.image.url }}" alt="..." class="img-thumbnail">    
+           <!--<img src="{{ object.image.url }}" alt="..." class="img-thumbnail"> -->
+           <div class="row gallery">
+            {% for p in object.images_set.all %}
+             <div class="col-md-3">
+              <img src="{{ p.image.url }}" alt="Image Not Found" class="img-thumbnail">
+             </div> 
+            {% endfor %}
+            </div>  
            <p> Full Address: {{object.address}}</p>  
            <p>Number of bedrooms: {{object.bedroom}}</p>
            <p>Number of Bathrooms: {{object.bathroom}}</p>
