@@ -32,7 +32,7 @@ class advertisements(models.Model):
     # google location will be added later
 
     def get_absolute_url(self):
-        return reverse('advertisement_details', kwargs={'pk':self.pk})
+        return reverse('advertisement_details', kwargs={'id':self.id})
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
