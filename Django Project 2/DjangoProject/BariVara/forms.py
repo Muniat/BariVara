@@ -6,3 +6,8 @@ class advertisementForm(forms.ModelForm):
     class Meta:
         model= models.advertisements
         fields=['place','address','bedroom','bathroom','rent','size','number',]
+
+class advertisementEditForm(forms.ModelForm):
+    class Meta:
+        model= models.advertisements
+        fields=['place','address','bedroom','bathroom','rent','size','number',]        

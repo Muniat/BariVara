@@ -37,15 +37,17 @@
          <p>Rent: {{ advertisement.rent}} in Tk</p>
          <div class = "row gallery">
          {% for p in advertisement.images_set.all %}
-         <div class="col-md -3">
-           <img src="{{ p.image.url }}" width="50%" height="auto" alt="images" class="img-thumbnail">
-         </div>
+            <div class="col-md -3">
+               <img src="{{ p.image.url }}" width="50%" height="auto" alt="images" class="img-thumbnail">
+            </div>
          {% endfor %}
          <legend class="border-bottom mb-4 text-center"><h3>Owner Information</h3></legend>
          <p>Owner: {{ advertisement.owner}}</p>
          <p>Mobile/Telphone: {{ advertisement.number}}</p>
-         
-    </div>
+         {% if advertisement.owner == request.user %}
+         <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'advertisement_edit' advertisement.id %}">Update</a>
+         {% endif %}
+         </div>
     <!--<div class="row gallery">
       {% for p in advertisement.images_set.all %}
         <div class="col-md -3">
@@ -54,6 +56,6 @@
       {% endfor %}
    </div>--> 
    </div>
-</div>
+
 
 {% endblock content %}

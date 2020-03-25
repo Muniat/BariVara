@@ -1,9 +1,10 @@
-from django.shortcuts import render,redirect
-from .forms import advertisementForm
+from django.shortcuts import render,redirect,get_object_or_404
+from .forms import *
 from .models import advertisements,images
 from django.forms import modelformset_factory
 from django.contrib import messages
-
+from django.http import HttpResponse,HttpResponseRedirect,Http404
+from django.urls import reverse
 def HomePage(request):
     
     context={
@@ -40,6 +41,23 @@ def create_advertisements(request):
     }
     return render (request,'BariVara/create_advertisements.html',context)
 
+def advertisement_edit(request, id):
+    advertisement = get_object_or_404(advertisements, id=id)
+    if advertisement.owner != request.user:
+        raise Http404()
+    if request.method == "POST":
+        form = advertisementEditForm(request.POST or None, instance=advertisement)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(advertisement.get_absolute_url())
+    else:
+        form = advertisementEditForm(instance=advertisement)
+        context = {
+            'form': form,
+            'advertisement': advertisement,
+        }
+    return render(request, 'Barivara/advertisement_edit.html', context)
+        
 def your_advertisements(request):
     advertisement={
         'advertisements': advertisements.objects.all()

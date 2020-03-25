@@ -11,6 +11,7 @@ urlpatterns = [
     
     path('', views.HomePage, name='HomePage'),
     path('create_advertisements', views.create_advertisements, name='create_advertisements'),
+    path('advertisement_edit/<int:id>/', views.advertisement_edit, name='advertisement_edit'),
     path('advertisement_details/<int:id>/', views.advertisement_details, name='advertisement_details'),
     path('search', views.Search, name='search'),
     path('filter', views.Filter, name='filter'),
