@@ -43,18 +43,38 @@ def create_advertisements(request):
 
 def advertisement_edit(request, id):
     advertisement = get_object_or_404(advertisements, id=id)
+    ImageFormset= modelformset_factory(images,fields=('image',),extra=3, max_num=3)
     if advertisement.owner != request.user:
         raise Http404()
     if request.method == "POST":
         form = advertisementEditForm(request.POST or None, instance=advertisement)
-        if form.is_valid():
+        formset=ImageFormset(request.POST or None, request.FILES or None)
+        if form.is_valid() and formset.is_valid():
             form.save()
+            print(formset.cleaned_data)
+            data = images.objects.filter(advertisement=advertisement)
+            for index, f in enumerate(formset):
+                if f.cleaned_data:
+                    if f.cleaned_data['id'] is None:
+                        photo=images(advertisement=advertisement,image=f.cleaned_data['image'])
+                        photo.save()
+                    elif f.cleaned_data['image'] is False:
+                        photo = images.objects.get(id=request.POST.get('form-'+str(index)+'-id'))
+                        photo.delete()
+                    else:
+                        photo=images(advertisement=advertisement,image=f.cleaned_data['image'])
+                        d = images.objects.get(id=data[index].id)
+                        d.image = photo.image
+                        d.save()
+
             return HttpResponseRedirect(advertisement.get_absolute_url())
     else:
         form = advertisementEditForm(instance=advertisement)
+        formset = ImageFormset(queryset=images.objects.filter(advertisement=advertisement))
         context = {
             'form': form,
             'advertisement': advertisement,
+            'formset':formset,
         }
     return render(request, 'Barivara/advertisement_edit.html', context)
 

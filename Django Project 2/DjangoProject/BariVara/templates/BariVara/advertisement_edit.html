@@ -36,7 +36,11 @@
 <form action ="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form|crispy }}
-    {{formset.as_p}}
+    
+    {{ formset.management_form }}
+    {% for f in formset %}
+        {{ f.as_p }}
+    {% endfor %}    
     <button class="btn btn btn-primary" type="submit"> Update </button>
     
 </form>

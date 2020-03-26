@@ -43,7 +43,7 @@ class images(models.Model):
     image=models.ImageField(upload_to='house_pics/',blank=True, null=True)
 
     def __str__(self):
-        return self.advertisements.place + "Image"
+        return self.advertisement.place + "Image"
 
     
     
