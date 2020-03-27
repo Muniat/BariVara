@@ -92,15 +92,16 @@ def your_advertisements(request):
     return render (request, 'BariVara/your_advertisements.html',advertisement)
 
 def advertisement_details(request,id):
-    
+    advertisement = get_object_or_404(advertisements, id=id)
     if request.method=='POST':
         form=commentForm(request.POST or None)
         if form.is_valid():
             content=request.POST.get('content')
             comment=Comment.objects.create(advertisement=advertisements.objects.get(id=id),user=request.user,content=content)
             comment.save()
-            form.save()
-            return redirect('HomePage')
+            return HttpResponseRedirect(advertisement.get_absolute_url())
+            #form.save()
+            #return redirect('HomePage')
     else:
         form=commentForm()
     context={
