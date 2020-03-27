@@ -49,6 +49,29 @@
          <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'advertisement_delete' advertisement.id %}">Delete</a>
          {% endif %}
          </div>
+
+         <br>
+         <hr>
+
+         <form action ="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p}}
+            <input type="submit" value="Submit" class="btn btn-outline-success"
+         </form>
+
+
+
+
+         <div class="main-commment-section">
+            {{ comments.count }} Comment{{ comments|pluralize }}
+            {% for comment in comments %}
+            <blockquote class="blockquote">
+               <p class="mb-0">{{ comment.content }}</p>
+               <footer class="blockquote-footer">Commented by <cite title="Source Title">{{ comment.user|capfirst }}</cite></footer>
+             </blockquote>
+
+            {% endfor %}
+         </div>
     <!--<div class="row gallery">
       {% for p in advertisement.images_set.all %}
         <div class="col-md -3">

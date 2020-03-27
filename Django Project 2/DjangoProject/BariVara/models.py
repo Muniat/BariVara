@@ -45,5 +45,15 @@ class images(models.Model):
     def __str__(self):
         return self.advertisement.place + "Image"
 
+
+class Comment(models.Model):
+    advertisement=models.ForeignKey(advertisements,on_delete=models.CASCADE)
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    content=models.TextField(max_length=200)
+    timestamp=models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return '{}-{}'.format(self.advertisement.id, str(self.user.username))
+
     
     

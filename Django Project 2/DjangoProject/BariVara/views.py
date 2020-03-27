@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from .forms import *
-from .models import advertisements,images
+from .models import advertisements,images,Comment
 from django.forms import modelformset_factory
 from django.contrib import messages
 from django.http import HttpResponse,HttpResponseRedirect,Http404
@@ -92,9 +92,22 @@ def your_advertisements(request):
     return render (request, 'BariVara/your_advertisements.html',advertisement)
 
 def advertisement_details(request,id):
+    
+    if request.method=='POST':
+        form=commentForm(request.POST or None)
+        if form.is_valid():
+            content=request.POST.get('content')
+            comment=Comment.objects.create(advertisement=advertisements.objects.get(id=id),user=request.user,content=content)
+            comment.save()
+            form.save()
+            return redirect('HomePage')
+    else:
+        form=commentForm()
     context={
-        'advertisement':advertisements.objects.get(id=id)
-    }
+        'advertisement':advertisements.objects.get(id=id),
+        'comments':Comment.objects.filter(advertisement=advertisements.objects.get(id=id)),
+        'form':form,
+        }
     
     return render(request,'BariVara/advertisement_details.html',context)
 
