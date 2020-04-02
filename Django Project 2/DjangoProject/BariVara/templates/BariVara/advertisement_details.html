@@ -53,22 +53,62 @@
          <br>
          <hr>
 
-         <form action ="" method="POST">
-            {% csrf_token %}
-            {{ form.as_p}}
-            <input type="submit" value="Submit" class="btn btn-outline-success">
-         </form>
-
+        
 
 
 
          <div class="main-commment-section">
+          <div class="container-fluid mt-2">
+            <div class="form-group row">
+              <form action ="" method="POST">
+                {% csrf_token %}
+                {{ form.as_p}}
+                <input type="submit" value="Submit" class="btn btn-outline-success">
+              </form>
+              
+            </div>
+            
+           </div>
             {{ comments.count }} Comment{{ comments|pluralize }}
             {% for comment in comments %}
             <blockquote class="blockquote">
                <p class="mb-0">{{ comment.content }}</p>
-               <footer class="blockquote-footer">Commented by <cite title="Source Title">{{ comment.user|capfirst }}</cite></footer>
+               <footer class="blockquote-footer">Commented by <cite title="Source Title">{{ comment.user|capfirst }}</cite>
+                 <button type ="button" name="button" class ="reply-btn btn btn-outline-success btn-sm">Reply</button>
+
+               </footer>
              </blockquote>
+
+          <div class="replied-comments container mt-2">
+
+              {% for reply in comment.replies.all %}
+
+
+
+               <blockquote class="blockquote">
+               <p class="mb-0">{{ reply.content }}</p>
+               <footer class="blockquote-footer">replied by <cite title="Source Title">{{ reply.user|capfirst }}</cite>
+                
+
+               </footer>
+               </blockquote>
+              {% endfor %}
+              <div class="form-group row">
+
+
+
+                <form action ="" method="POST">
+                  {% csrf_token %}
+                  <input type="hidden" name="comment_id"  value="{{ comment.id }}" >
+                  {{ form.as_p}}
+                  <input type="submit" value="Submit" class="btn btn-outline-success">
+                </form>
+
+                
+              </div>
+
+               
+             </div>
 
             {% endfor %}
          </div>

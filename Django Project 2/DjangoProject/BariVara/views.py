@@ -93,11 +93,22 @@ def your_advertisements(request):
 
 def advertisement_details(request,id):
     advertisement = get_object_or_404(advertisements, id=id)
+
+    Comments=Comment.objects.filter(advertisement=advertisements.objects.get(id=id) , reply = None)
     if request.method=='POST':
         form=commentForm(request.POST or None)
         if form.is_valid():
+
             content=request.POST.get('content')
-            comment=Comment.objects.create(advertisement=advertisements.objects.get(id=id),user=request.user,content=content)
+            print(content)
+            reply_id = request.POST.get('comment_id')
+            print(reply_id)
+            comment_qs = None
+            if reply_id:
+                comment_qs = Comment.objects.get(id=reply_id)
+            comment=Comment.objects.create(advertisement=advertisements.objects.get(id=id),user=request.user,content=content , reply = comment_qs)
+            print(content)
+
             comment.save()
             return HttpResponseRedirect(advertisement.get_absolute_url())
             #form.save()
@@ -106,8 +117,9 @@ def advertisement_details(request,id):
         form=commentForm()
     context={
         'advertisement':advertisements.objects.get(id=id),
-        'comments':Comment.objects.filter(advertisement=advertisements.objects.get(id=id)),
+        'comments':Comments,
         'form':form,
+        
         }
     
     return render(request,'BariVara/advertisement_details.html',context)
