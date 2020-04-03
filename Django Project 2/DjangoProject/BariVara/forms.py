@@ -17,7 +17,7 @@ class advertisementEditForm(forms.ModelForm):
 class commentForm(forms.ModelForm):
 
 
-	content = forms.CharField(label="" , widget = forms.Textarea(attrs={'class': 'form-control' , 'placeholder': 'text goes here' , 'rows':'4' , 'cols': '50'}))
+	content = forms.CharField(label="" , widget = forms.Textarea(attrs={'class': 'form-control' , 'placeholder': 'text goes here' , 'rows':'2' , 'cols': '60'}))
 
 	class Meta:
 
