@@ -5,12 +5,26 @@ from django.forms import modelformset_factory
 from django.contrib import messages
 from django.http import HttpResponse,HttpResponseRedirect,Http404
 from django.urls import reverse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+
+
+
 def HomePage(request):
-    
-    context={
-        'advertisements':advertisements.objects.all()
+
+    advertisement = advertisements.objects.all().order_by('-id')
+    paginator = Paginator(advertisement, 6)
+    page = request.GET.get('page')
+    try:
+        advertisement = paginator.page(page)
+    except PageNotAnInteger:
+        advertisement = paginator.page(1)
+    except EmptyPage:
+        advertisement = paginator.page(paginator.num_pages)
+    context = {
+        'advertisement' : advertisement,
     }
-    return render (request, 'BariVara/HomePage.html',context)
+    return render(request, 'BariVara/HomePage.html', context)
 
 
 def create_advertisements(request):
