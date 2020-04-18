@@ -12,7 +12,7 @@
     body{
       background-color:  #34495e;
       background:linear-gradient(rgba(0,0,0,.3),rgba(0,0,0,.3)),url('/BariVara/static/BariVara/City1.jpg') no-repeat;
-      background-size: 100% 100%;
+      background-size: 100% auto;
     }
     nav{
         width: 100%;
@@ -44,7 +44,12 @@
             margin-right: 6%;
         }
 
-
+        .pagination{
+            margin-left:10%;
+            margin-right:10%;
+            margin-top: 10px;
+            color: #34495e;
+        }
 
         
 </style>
@@ -123,7 +128,7 @@
 <ul class="pagination">
   {% if advertisement.has_previous %}
     <li class="page-item">
-      <a href="?page={{ advertisement.previous_page_number }}" class="page-link">&laquo;</a>
+      <a href="?page={{ advertisement.previous_page_number }}" class="page-link">Previous Page</a>
     </li>
   {% endif %}
   {% for ad in advertisement.paginator.page_range %}
@@ -140,7 +145,7 @@
 
   {% if advertisement.has_next %}
       <li class="page-item">
-      <a href="?page={{ advertisement.next_page_number }}" class="page-link">&raquo;</a>
+      <a href="?page={{ advertisement.next_page_number }}" class="page-link">Next Page</a>
     </li>
   {% endif %}
               
