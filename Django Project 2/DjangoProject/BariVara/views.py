@@ -8,8 +8,7 @@ from django.urls import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
-
-
+# Function for homepage after login
 def HomePage(request):
 
     advertisement = advertisements.objects.all().order_by('-id')
@@ -26,7 +25,7 @@ def HomePage(request):
     }
     return render(request, 'BariVara/HomePage.html', context)
 
-
+# Function for creating new advertisement
 def create_advertisements(request):
     ImageFormset= modelformset_factory(images,fields=('image',),extra=3)
     if request.method=='POST':
@@ -39,8 +38,7 @@ def create_advertisements(request):
             for f in formset:
                 try:
                     photo=images(advertisement=advertisement,image=f.cleaned_data['image'])
-                    photo.save()
-                    
+                    photo.save()                   
                 except Exception as e:
                     break
             return redirect('HomePage')
@@ -55,6 +53,7 @@ def create_advertisements(request):
     }
     return render (request,'BariVara/create_advertisements.html',context)
 
+# Function for editing advertisement
 def advertisement_edit(request, id):
     advertisement = get_object_or_404(advertisements, id=id)
     ImageFormset= modelformset_factory(images,fields=('image',),extra=3, max_num=3)
@@ -92,19 +91,22 @@ def advertisement_edit(request, id):
         }
     return render(request, 'Barivara/advertisement_edit.html', context)
 
+# Function for deleting advertisement
 def advertisement_delete(request, id):
     advertisement = get_object_or_404(advertisements, id=id)
     if advertisement.owner != request.user:
         raise Http404()
     advertisement.delete()
     return redirect('HomePage')
-        
+
+# Function for showing user's own advertisements        
 def your_advertisements(request):
     advertisement={
         'advertisements': advertisements.objects.all()
     }
     return render (request, 'BariVara/your_advertisements.html',advertisement)
 
+# Function for showing details of any particular advertisement
 def advertisement_details(request,id):
     advertisement = get_object_or_404(advertisements, id=id)
 
@@ -132,12 +134,12 @@ def advertisement_details(request,id):
     context={
         'advertisement':advertisements.objects.get(id=id),
         'comments':Comments,
-        'form':form,
-        
+        'form':form,        
         }
     
     return render(request,'BariVara/advertisement_details.html',context)
 
+# Function for filtering advertisements by budget
 def Filter(request):
 
     query = request.GET['query']
@@ -167,7 +169,7 @@ def Filter(request):
         return render(request, 'BariVara/filter.html', params)    
         
     
-
+# Function for searching advertisements by area
 def Search(request):
 
     query = request.GET['query']

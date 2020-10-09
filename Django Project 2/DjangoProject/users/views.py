@@ -3,7 +3,7 @@ from django.contrib import messages
 from .forms import UserSignUpForm , UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
 
-
+# Function for user signup
 def signup(request):
     if request.method =='POST':
         form=UserSignUpForm(request.POST)
@@ -19,6 +19,7 @@ def signup(request):
 def HomePage(request):
     return render(request, 'users/Login.html')
 
+#Function for user profile
 @login_required
 def profile(request):
     if request.method=='POST':

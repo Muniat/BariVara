@@ -3,17 +3,19 @@ from . import models
 from .models import Comment
 from django.forms import ModelForm
 
+# Form for creating new advertisement
 class advertisementForm(forms.ModelForm):
     class Meta:
         model= models.advertisements
         fields=['place','address','bedroom','bathroom','rent','size','number',]
 
+# Form for editing advertisement
 class advertisementEditForm(forms.ModelForm):
     class Meta:
         model= models.advertisements
         fields=['place','address','bedroom','bathroom','rent','size','number',]        
 
-
+# Form for comment section in particular advertisement
 class commentForm(forms.ModelForm):
 
 

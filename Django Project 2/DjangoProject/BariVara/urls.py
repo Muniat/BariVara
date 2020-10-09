@@ -11,7 +11,6 @@ urlpatterns = [
     
     path('', views.HomePage, name='HomePage'),
     path('create_advertisements', views.create_advertisements, name='create_advertisements'),
-    #path('', views.advertisement_list, name='advertisement_list'),
     path('advertisement_edit/<int:id>/', views.advertisement_edit, name='advertisement_edit'),
     path('advertisement_delete/<int:id>/', views.advertisement_delete, name='advertisement_delete'),
     path('advertisement_details/<int:id>/', views.advertisement_details, name='advertisement_details'),

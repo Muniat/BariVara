@@ -6,6 +6,7 @@ from PIL import Image
 
 # Create your models here.
 
+# model for creating advertisements
 class advertisements(models.Model):
     PLACE=[
         ('mothijheel', 'Mothijheel'),
@@ -27,17 +28,14 @@ class advertisements(models.Model):
     owner= models.ForeignKey(User,on_delete=models.CASCADE)
     number=models.PositiveIntegerField(null=True)
     
-
-    
-    # google location will be added later
-
+      
     def get_absolute_url(self):
         return reverse('advertisement_details', kwargs={'id':self.id})
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 
-
+# Model for uploading images
 class images(models.Model):
     advertisement=models.ForeignKey(advertisements,on_delete=models.CASCADE)
     image=models.ImageField(upload_to='house_pics/',blank=True, null=True)
@@ -46,6 +44,7 @@ class images(models.Model):
         return self.advertisement.place + "Image"
 
 
+# Model for comment section
 class Comment(models.Model):
     advertisement=models.ForeignKey(advertisements,on_delete=models.CASCADE)
     user=models.ForeignKey(User,on_delete=models.CASCADE)
